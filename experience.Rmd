@@ -1,0 +1,27 @@
+---
+title: "experience"
+output:
+  html_document:
+    toc : true
+    toc_float: true
+---
+
+## contact information
+
+jq2293@cumc.columbia.edu
+
+100 Haven Avenue, NY
+
+## academic background
+
+College of Life Science and Technology, Huazhong University of Science and Technology (HUST)                                                                   
+Major (Full-time): Bioscience                                                         
+
+09. 2014 - 06. 2018  
+GPA: 3.85  
+	Rank：1/53  
+University of California, Berkeley                                                        01. 2017- 05. 2017                                                       
+	Enroll for the Spring 2017 semester through the Concurrent Enrollment Program
+	Core courses: Developmental Biology(MCB141), Cell and Systems Biology(MCB130), and Neurobiology of Disease (MCB165)
+	GPA: 4.0
+
