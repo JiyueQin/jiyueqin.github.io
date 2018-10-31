@@ -1,0 +1,62 @@
+---
+title: "problem2"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(viridis)
+library(p8105.datasets)
+library(plotly)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+instacart_data = instacart %>% 
+  select(-add_to_cart_order, -eval_set) %>% 
+  sample_n(5000)
+
+popular_department = instacart_data %>% 
+  group_by(department) %>% 
+  summarize(n = n()) %>% 
+  arrange(desc(n))
+  
+popular_department %>% 
+  mutate(department = fct_reorder(department, n)) %>% 
+  plot_ly(x = ~department, type = "bar",
+          y = ~n,
+          color = ~department)
+  
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r barchart}
+highest_department =
+  popular_department %>% 
+  top_n(10) %>% 
+  select(department)
+
+inner_join(instacart_data, highest_department,
+             by = "department") %>% 
+  mutate(department = fct_reorder(department, order_hour_of_day)) %>% 
+  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box")
+          
+```
+
+### Chart C
+
+```{r}
+
+```

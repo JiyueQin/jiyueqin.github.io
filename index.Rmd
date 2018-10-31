@@ -6,8 +6,10 @@ output:
     toc_float: true
 ---
 
-## welcome to my website
+welcome to my website.
 
 I am currenty a first-year MS student in Columbia Biostatistics.
 
-More information about [my experience](experience.html)
+More information about [my academic experience](experience.html)
+
+the code for problem 2 is [here](dashboard.html)
