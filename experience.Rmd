@@ -1,27 +1,68 @@
----
-title: "experience"
-output:
-  html_document:
-    toc : true
-    toc_float: true
----
 
-## contact information
 
-jq2293@cumc.columbia.edu
+# **Jiyue Qin**
 
-100 Haven Avenue, NY
+> jq2293@columbia.edu | 100 Haven Avenue, NY, 10032
 
-## academic background
+## **Education**
 
-College of Life Science and Technology, Huazhong University of Science and Technology (HUST)                                                                   
-Major (Full-time): Bioscience                                                         
+**Columbia Univiersiy**
 
-09. 2014 - 06. 2018  
+1st graduate student in Biostatistics
+
+_09. 2018 - current_ 
+
+**Huazhong University of Science and Technology (HUST)**
+
+B.S. in Bioscience
+
+_09. 2014 - 06. 2018_ 
+
 GPA: 3.85  
-	Rank：1/53  
-University of California, Berkeley                                                        01. 2017- 05. 2017                                                       
-	Enroll for the Spring 2017 semester through the Concurrent Enrollment Program
-	Core courses: Developmental Biology(MCB141), Cell and Systems Biology(MCB130), and Neurobiology of Disease (MCB165)
-	GPA: 4.0
+  
+**University of California, Berkeley**
 
+concurrent enrollment progam 
+
+_01. 2017- 05. 2017_                                                      
+
+Core courses: Developmental Biology, Cell and Systems Biology, and Neurobiology of Disease
+
+GPA: 4.0
+
+
+## **Experience**
+
+**Ning's lab, HUST, China**
+
+Research assistant
+
+_08. 2017 - 06. 2018_
+
+Project: Gut microbiome of an unindustrialized population have characteristic enrichment of SNPs in species and functions with the succession of seasons
+
+**Frasergen, Wuhan, China**
+
+Bioinformatics analyst
+
+_03.2018 - 05. 2018_
+
+- developed the pipeline for comparative genomic analysis using Python.
+
+- conducted the comparative genomic analysis for _Spirodela polyrhiza_.
+
+**iGEM 2016 Giant Jamboree, Boston, U.S.**
+
+**Gold Medal**
+
+Member of HUST-China Team 
+
+_10.27.2016 - 10.31.2016_  
+
+Project: A Signal Filter based on Positive Feedback 
+
+## **Skills**
+
+- Skilled in Microsoft Word, Excel and PowerPoint
+
+- Familiar with R, Python, SPSS.

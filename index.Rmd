@@ -10,4 +10,4 @@ output:
 
 I am currenty a first-year MS student in Columbia Biostatistics.
 
-More information about [my experience](https://jiyueqin.github.io/markdown-cv/)
+More information about [my experience](experience.html)

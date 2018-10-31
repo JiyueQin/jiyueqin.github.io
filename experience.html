@@ -11,7 +11,7 @@
 
 
 
-<title>experience</title>
+<title>experience.utf8.md</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -172,101 +169,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -336,33 +238,60 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">experience</h1>
 
 </div>
 
 
-<div id="contact-information" class="section level2">
-<h2>contact information</h2>
-<p><a href="mailto:jq2293@cumc.columbia.edu" class="email">jq2293@cumc.columbia.edu</a></p>
-<p>100 Haven Avenue, NY</p>
+<div id="jiyue-qin" class="section level1">
+<h1><strong>Jiyue Qin</strong></h1>
+<blockquote>
+<p><a href="mailto:jq2293@columbia.edu" class="email">jq2293@columbia.edu</a> | 100 Haven Avenue, NY, 10032</p>
+</blockquote>
+<div id="education" class="section level2">
+<h2><strong>Education</strong></h2>
+<p><strong>Columbia Univiersiy</strong></p>
+<p>1st graduate student in Biostatistics</p>
+<p><em>09. 2018 - current</em></p>
+<p><strong>Huazhong University of Science and Technology (HUST)</strong></p>
+<p>B.S. in Bioscience</p>
+<p><em>09. 2014 - 06. 2018</em></p>
+<p>GPA: 3.85</p>
+<p><strong>University of California, Berkeley</strong></p>
+<p>concurrent enrollment progam</p>
+<p><em>01. 2017- 05. 2017</em></p>
+<p>Core courses: Developmental Biology, Cell and Systems Biology, and Neurobiology of Disease</p>
+<p>GPA: 4.0</p>
 </div>
-<div id="academic-background" class="section level2">
-<h2>academic background</h2>
-<p>College of Life Science and Technology, Huazhong University of Science and Technology (HUST)<br />
-Major (Full-time): Bioscience</p>
-<ol start="9" style="list-style-type: decimal">
-<li>2014 - 06. 2018<br />
-GPA: 3.85<br />
- Rank：1/53<br />
-University of California, Berkeley 01. 2017- 05. 2017<br />
- Enroll for the Spring 2017 semester through the Concurrent Enrollment Program  Core courses: Developmental Biology(MCB141), Cell and Systems Biology(MCB130), and Neurobiology of Disease (MCB165)  GPA: 4.0</li>
-</ol>
+<div id="experience" class="section level2">
+<h2><strong>Experience</strong></h2>
+<p><strong>Ning’s lab, HUST, China</strong></p>
+<p>Research assistant</p>
+<p><em>08. 2017 - 06. 2018</em></p>
+<p>Project: Gut microbiome of an unindustrialized population have characteristic enrichment of SNPs in species and functions with the succession of seasons</p>
+<p><strong>Frasergen, Wuhan, China</strong></p>
+<p>Bioinformatics analyst</p>
+<p><em>03.2018 - 05. 2018</em></p>
+<ul>
+<li><p>developed the pipeline for comparative genomic analysis using Python.</p></li>
+<li><p>conducted the comparative genomic analysis for <em>Spirodela polyrhiza</em>.</p></li>
+</ul>
+<p><strong>iGEM 2016 Giant Jamboree, Boston, U.S.</strong></p>
+<p><strong>Gold Medal</strong></p>
+<p>Member of HUST-China Team</p>
+<p><em>10.27.2016 - 10.31.2016</em></p>
+<p>Project: A Signal Filter based on Positive Feedback</p>
+</div>
+<div id="skills" class="section level2">
+<h2><strong>Skills</strong></h2>
+<ul>
+<li><p>Skilled in Microsoft Word, Excel and PowerPoint</p></li>
+<li><p>Familiar with R, Python, SPSS.</p></li>
+</ul>
+</div>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
