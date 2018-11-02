@@ -11,6 +11,7 @@ library(flexdashboard)
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
+set.seed(1)
 ```
 
 Column {data-width=550}
