@@ -1,5 +1,4 @@
 
-
 # **Jiyue Qin**
 
 > jq2293@columbia.edu | 100 Haven Avenue, NY, 10032
@@ -59,10 +58,10 @@ Member of HUST-China Team
 
 _10.27.2016 - 10.31.2016_  
 
-Project: A Signal Filter based on Positive Feedback 
+Project: [A Signal Filter based on Positive Feedback](http://2016.igem.org/Team:HUST-China) 
 
 ## **Skills**
 
-- Skilled in Microsoft Word, Excel and PowerPoint
+Skilled in Microsoft Word, Excel and PowerPoint
 
-- Familiar with R, Python, SPSS.
+Familiar with R, Python, SPSS.

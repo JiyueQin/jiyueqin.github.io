@@ -11,7 +11,7 @@
 
 
 
-<title>Hey!</title>
+<title>Jiyue’s Website</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,9 +19,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -74,6 +71,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 
 </head>
 
@@ -172,101 +170,6 @@ $(document).ready(function () {
 
 
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
-
-
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -277,12 +180,12 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">keep calm!</a>
+      <a class="navbar-brand" href="index.html">Keep calm</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">home</a>
+  <a href="index.html">Home</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -310,20 +213,17 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li class="dropdown-header">Heading 1</li>
+    <li class="dropdown-header">Project</li>
     <li>
-      <a href="page_a.html">Page A</a>
+      <a href="hadza_variant.html">Hadza Variants</a>
     </li>
     <li>
-      <a href="page_b.html">Page B</a>
+      <a href="igem.html">iGEM2016</a>
     </li>
     <li class="divider"></li>
-    <li class="dropdown-header">Heading 2</li>
+    <li class="dropdown-header">Life</li>
     <li>
-      <a href="page_c.html">Page C</a>
-    </li>
-    <li>
-      <a href="page_d.html">Page D</a>
+      <a href="travel.html">travel</a>
     </li>
   </ul>
 </li>
@@ -336,20 +236,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Hey!</h1>
+<h1 class="title toc-ignore">Jiyue’s Website</h1>
 
 </div>
 
 
-<p>welcome to my website.</p>
-<p>I am currenty a first-year MS student in Columbia Biostatistics.</p>
+<p>Hey, welcome to my website.</p>
+<p>Currently, my interest is in statistical analysis and ICEBEAR.</p>
+<p><img src="images/icebear.jpg" width="30%" /></p>
 <p>More information about <a href="experience.html">my academic experience</a></p>
-<p>the code for problem 2 is <a href="dashboard.html">here</a></p>
+<p>The dashboard for problem 2 in Data Science homework is <a href="dashboard.html">here</a></p>
+<p>I will also record my projects and life here.. Check MORE icon upper right.</p>
 
 
 
-</div>
-</div>
 
 </div>
 

@@ -1,15 +1,20 @@
 ---
-title: "Hey!"
-output:
-  html_document:
-    toc : true
-    toc_float: true
+title: "Jiyue's Website"
+output: html_document
 ---
 
-welcome to my website.
+Hey, welcome to my website.
 
-I am currenty a first-year MS student in Columbia Biostatistics.
+Currently, my interest is in statistical analysis and ICEBEAR.
+
+```{r  out.width = "30%", echo = FALSE}
+knitr::include_graphics("images/icebear.jpg") 
+```
 
 More information about [my academic experience](experience.html)
 
-the code for problem 2 is [here](dashboard.html)
+The dashboard for problem 2 in Data Science homework is [here](dashboard.html)
+
+I will also record my projects and life here.. Check MORE icon upper right.
+
+

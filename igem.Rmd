@@ -1,0 +1,12 @@
+---
+title: "iGEM-2016"
+---
+
+In  [iGEM 2016](http://2016.igem.org/Main_Page), we designed a signal filter toolkit based on positive feedback.
+
+We won Gold Medal.
+
+
+```{r  echo = FALSE}
+knitr::include_graphics("images/iGEM.jpg") 
+```

@@ -1,5 +1,14 @@
 ---
-title: "about"
+title: "About"
 ---
+Hi.
 
-This is for homework 4 in data science.
+My name is Jiyue Qin.
+
+I am currenty a first-year MS student in Columbia Biostatistics.
+
+This is my favoutite picture at San Diego.
+
+```{r  out.width = "60%", echo = FALSE}
+knitr::include_graphics("images/SanDiego.jpg") 
+```

@@ -1,0 +1,9 @@
+---
+title: "Hadza Variants"
+---
+
+This project is a strain-level analysis of Hadza hunter-gatherers' gut metagenome.
+
+The manuscript is under review now.
+
+The preprint version is [here](https://www.biorxiv.org/content/early/2018/09/16/418889)
