@@ -9,17 +9,19 @@ output:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
-library(viridis)
 library(p8105.datasets)
 library(plotly)
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
-### Chart A
+### The number of items ordered in different departments
 
 ```{r barchart}
+text_set <- list(size = 9)
+margin_set <- list(b = 5, t = 5)
+
 instacart_data = instacart %>% 
   select(-add_to_cart_order, -eval_set) %>% 
   sample_n(5000) 
@@ -28,40 +30,50 @@ popular_department = instacart_data %>%
   group_by(department) %>% 
   summarize(n = n()) %>% 
   arrange(desc(n))
-  
+
 popular_department %>% 
   mutate(department = fct_reorder(department, n)) %>% 
-  plot_ly(x = ~department, type = "bar",
-          y = ~n,
-          color = ~department)
+  plot_ly(x = ~department, type = "bar", y = ~n, color = ~department) %>% 
+  layout(xaxis = list(title = ''),
+         yaxis = list (title = 'number of items'))
   
 ```
 
-Column {data-width=350}
+Column {data-width=450}
 -----------------------------------------------------------------------
 
-### Chart B
+### The distribution of order time in different departments
 
 ```{r boxplot}
-highest_department =
-  popular_department %>% 
+
+highest_department = popular_department %>% 
   top_n(8) %>% 
   select(department)
 
 inner_join(instacart_data, highest_department,
-             by = "department") %>% 
+           by = "department") %>% 
   mutate(department = fct_reorder(department, order_hour_of_day)) %>% 
-  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box")
+  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box") %>% 
+  layout(xaxis = list(title = ''),
+         yaxis = list (title = 'order hour of day'),
+         font = text_set,
+         margin = margin_set)
           
 ```
 
-### Chart C
+### The number of items ordered on each day of a week
 
 ```{r line}
 inner_join(instacart_data, highest_department) %>% 
+  mutate(order_dow = recode(factor(order_dow), `0` = "Sun", `1` = "Mon", `2` = "Tue",
+                            `3` = "Wed", `4` = "Thu", `5` = "Fri", `6` = "Sat")) %>% 
   group_by(order_dow, department) %>% 
   summarize(n = n()) %>% 
   ungroup() %>% 
-  plot_ly(x = ~order_dow, y = ~n, color = ~department, type = "scatter", mode = "lines") 
+  plot_ly(x = ~order_dow, y = ~n, color = ~department, type = "scatter", mode = "lines") %>% 
+  layout(xaxis = list(title = ''),
+         yaxis = list (title = 'number of items'),
+         font = text_set, 
+         margin = margin_set)
 
 ```
