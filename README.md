@@ -1,2 +1,2 @@
-# jiyueqincumc.github.io
+# jiyueqin.github.io
 This is for homework 4 in data science.
