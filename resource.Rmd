@@ -1,0 +1,7 @@
+---
+title: "Resources"
+---
+
+I will compile anything interesting or useful here.
+
+1. [useful functions in ggplot](ggplot.html) 

@@ -1,0 +1,97 @@
+---
+title: "ggplot"
+output: 
+  html_document:
+    toc : true
+    toc_float: true
+---
+
+## _theme_
+
+`theme()` modifies the general plot elements.
+
+```{r theme, eval = FALSE}
+# tick labels
+axis.text.x = element_blank()
+axis.text.x = element_text(angle = 45, hjust = 0.6, vjust = 0.6)
+
+# remove x axis title
+axis.title.x = element_blank() 
+
+# remove y axis title
+axis.title.y = element_blank()
+
+# x axis tick
+axis.text.x = element_blank()
+
+# remove major panel grid
+panel.grid.major = element_blank()  
+
+#remove minor panel grid
+panel.grid.minor = element_blank()  
+
+# modify legend size(to expand plot area)
+legend.key.width = unit(0.3, "cm")
+legend.key.height = unit(0.1, "in")
+
+# legend position
+legend.position = "bottom"
+
+# legend text
+legend.text = element_text(size = 6)
+
+# title
+plot.title = element_text(size = 7)
+```
+
+## _font size_
+
+I will add theme_set() at the begining of a file.
+
+```{r font, eval = FALSE}
+# default is 11
+theme_set(theme_bw(base_size = 8) 
+```
+
+## _viridis_
+```{r viridis, eval = FALSE}
+
+scale_fill_viridis(name = "", option = "plasma")
+
+scale_fill_viridis(name = "legend_name", discrete = TRUE)
+
+scale_color_viridis(name = "", discrete = TRUE, option = "viridis")
+
+# guide removes the legend
+scale_fill_viridis(discrete = TRUE, option = "magma", guide = FALSE)
+```
+
+## _combined plot and title_
+```{r, eval = FALSE}
+library(patchwork)
+p <- p_1 + p_2
+wrap_elements(p) + ggtitle("Figure")`
+```
+
+## _label on the plot_
+
+```{r eval = FALSE}
+# label by the specific data
+geom_text(data = filter(location_summary, locationabbr == "FL"),
+            aes(label = locationabbr), show.legend = FALSE)
+
+# label by coordinate
+geom_text(x = 0.5, y = 0.5, label = "label_text", size = 3)
+
+# label with much data 
+ggrepel::geom_text_repel(data = head(dataset, 10),
+                        aes(label = aisle), size = 3.5)
+```
+
+## _ticks and limits_
+
+```{r eval = FALSE}
+scale_x_discrete(limits = c(0, 45), breaks = seq(1981, 2010, 5))
+
+scale_y_continuous(position = "right")
+```

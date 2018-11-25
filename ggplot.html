@@ -11,7 +11,7 @@
 
 
 
-<title>Jiyue’s Website</title>
+<title>ggplot</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -170,6 +173,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -239,20 +337,93 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Jiyue’s Website</h1>
+<h1 class="title toc-ignore">ggplot</h1>
 
 </div>
 
 
-<p>Hey, welcome to my website.</p>
-<p>Currently, my interest is in statistical analysis and ICEBEAR.</p>
-<p><img src="images/icebear.jpg" width="30%" /></p>
-<p>More information about <a href="experience.html">my academic experience</a></p>
-<p>The dashboard for problem 2 in Data Science homework is <a href="dashboard.html">here</a></p>
-<p>I will also record my projects and life here.. Check MORE icon upper right.</p>
+<div id="theme" class="section level2">
+<h2><em>theme</em></h2>
+<p><code>theme()</code> modifies the general plot elements.</p>
+<pre class="r"><code># tick labels
+axis.text.x = element_blank()
+axis.text.x = element_text(angle = 45, hjust = 0.6, vjust = 0.6)
+
+# remove x axis title
+axis.title.x = element_blank() 
+
+# remove y axis title
+axis.title.y = element_blank()
+
+# x axis tick
+axis.text.x = element_blank()
+
+# remove major panel grid
+panel.grid.major = element_blank()  
+
+#remove minor panel grid
+panel.grid.minor = element_blank()  
+
+# modify legend size(to expand plot area)
+legend.key.width = unit(0.3, &quot;cm&quot;)
+legend.key.height = unit(0.1, &quot;in&quot;)
+
+# legend position
+legend.position = &quot;bottom&quot;
+
+# legend text
+legend.text = element_text(size = 6)
+
+# title
+plot.title = element_text(size = 7)</code></pre>
+</div>
+<div id="font-size" class="section level2">
+<h2><em>font size</em></h2>
+<p>I will add theme_set() at the begining of a file.</p>
+<pre class="r"><code># default is 11
+theme_set(theme_bw(base_size = 8) </code></pre>
+</div>
+<div id="viridis" class="section level2">
+<h2><em>viridis</em></h2>
+<pre class="r"><code>scale_fill_viridis(name = &quot;&quot;, option = &quot;plasma&quot;)
+
+scale_fill_viridis(name = &quot;legend_name&quot;, discrete = TRUE)
+
+scale_color_viridis(name = &quot;&quot;, discrete = TRUE, option = &quot;viridis&quot;)
+
+# guide removes the legend
+scale_fill_viridis(discrete = TRUE, option = &quot;magma&quot;, guide = FALSE)</code></pre>
+</div>
+<div id="combined-plot-and-title" class="section level2">
+<h2><em>combined plot and title</em></h2>
+<pre class="r"><code>library(patchwork)
+p &lt;- p_1 + p_2
+wrap_elements(p) + ggtitle(&quot;Figure&quot;)`</code></pre>
+</div>
+<div id="label-on-the-plot" class="section level2">
+<h2><em>label on the plot</em></h2>
+<pre class="r"><code># label by the specific data
+geom_text(data = filter(location_summary, locationabbr == &quot;FL&quot;),
+            aes(label = locationabbr), show.legend = FALSE)
+
+# label by coordinate
+geom_text(x = 0.5, y = 0.5, label = &quot;label_text&quot;, size = 3)
+
+# label with much data 
+ggrepel::geom_text_repel(data = head(dataset, 10),
+                        aes(label = aisle), size = 3.5)</code></pre>
+</div>
+<div id="ticks-and-limits" class="section level2">
+<h2><em>ticks and limits</em></h2>
+<pre class="r"><code>scale_x_discrete(limits = c(0, 45), breaks = seq(1981, 2010, 5))
+
+scale_y_continuous(position = &quot;right&quot;)</code></pre>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
