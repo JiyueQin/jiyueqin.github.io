@@ -13,7 +13,6 @@ knitr::include_graphics("images/icebear.jpg")
 
 More information about [my academic experience](experience.html)
 
-The dashboard for problem 2 in Data Science homework is [here](dashboard.html)
 
 I will also record my projects and life here.. Check MORE icon upper right.
 
