@@ -10,5 +10,5 @@ I am currenty a first-year MS student in Columbia Biostatistics.
 This is my favoutite picture at San Diego.
 
 ```{r  out.width = "60%", echo = FALSE}
-knitr::include_graphics("images/SanDiego.jpg") 
+knitr::include_graphics("images/SanDiego.JPG") 
 ```

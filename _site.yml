@@ -23,6 +23,8 @@ navbar:
           href: hadza_variant.html
         - text: "iGEM2016"
           href: igem.html
+        - text: "the heart project"
+          href: heart.html
         - text: "---------"
         - text: "Life"
         - text: "travel"

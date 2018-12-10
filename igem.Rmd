@@ -7,6 +7,8 @@ In  [iGEM 2016](http://2016.igem.org/Main_Page), we designed a signal filter too
 We won Gold Medal.
 
 
-```{r  echo = FALSE}
-knitr::include_graphics("images/iGEM.jpg") 
-```
+<center>
+
+<img src="images/iGEM.jpg" width="800px" height="auto">
+
+</center>
