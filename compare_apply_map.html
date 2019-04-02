@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>iterate_ways</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Keep calm</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="mailto:&lt;jq2293@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/JiyueQin/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="resource.html">Resources</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Project</li>
+    <li>
+      <a href="hadza_variant.html">Hadza Variants</a>
+    </li>
+    <li>
+      <a href="igem.html">iGEM2016</a>
+    </li>
+    <li>
+      <a href="heart.html">the heart project</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Life</li>
+    <li>
+      <a href="travel.html">travel</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">iterate_ways</h1>
+
+</div>
+
+
+<p>This illustrates ways to do iteration in R.</p>
+<div id="simulated-dataset" class="section level1">
+<h1>simulated dataset</h1>
+<pre class="r"><code># generate a 30x3 matrix
+set.seed(2)
+s_matrix = cbind(rnorm(30, 0), rnorm(30, 2), rnorm(30, 5))
+
+# genertate a date frame with the same data
+set.seed(2)
+s_df = tibble(a = rnorm(30, 0), b = rnorm(30, 2), c = rnorm(30, 5))</code></pre>
+</div>
+<div id="apply" class="section level1">
+<h1>apply</h1>
+<pre class="r"><code># return row means, 1 indicate row
+apply(s_matrix, 1, mean)   # return numeric vector</code></pre>
+<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709
+##  [8] 1.792808 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242
+## [15] 3.117000 1.924247 2.958878 2.572251 2.960398 1.607820 3.082839
+## [22] 2.056870 2.498006 2.952699 1.249815 1.468179 2.166958 2.351541
+## [29] 2.848161 3.115983</code></pre>
+<pre class="r"><code>apply(s_df, 1, mean)       # return named numeric vector</code></pre>
+<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709
+##  [8] 1.792808 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242
+## [15] 3.117000 1.924247 2.958878 2.572251 2.960398 1.607820 3.082839
+## [22] 2.056870 2.498006 2.952699 1.249815 1.468179 2.166958 2.351541
+## [29] 2.848161 3.115983</code></pre>
+<pre class="r"><code># return column means, 2 indicate column
+apply(s_matrix, 2, mean)   </code></pre>
+<pre><code>## [1] 0.2286718 1.9649504 4.7541528</code></pre>
+<pre class="r"><code>apply(s_df, 2, mean)</code></pre>
+<pre><code>##         a         b         c 
+## 0.2286718 1.9649504 4.7541528</code></pre>
+<pre class="r"><code># use map family
+map(s_df, mean)  # return list </code></pre>
+<pre><code>## $a
+## [1] 0.2286718
+## 
+## $b
+## [1] 1.96495
+## 
+## $c
+## [1] 4.754153</code></pre>
+<pre class="r"><code>map(s_matrix, mean)  # NOT working for matrix, iterates on every cell and return a list with length 90.</code></pre>
+<pre><code>## [[1]]
+## [1] -0.8969145
+## 
+## [[2]]
+## [1] 0.1848492
+## 
+## [[3]]
+## [1] 1.587845
+## 
+## [[4]]
+## [1] -1.130376
+## 
+## [[5]]
+## [1] -0.08025176
+## 
+## [[6]]
+## [1] 0.1324203
+## 
+## [[7]]
+## [1] 0.7079547
+## 
+## [[8]]
+## [1] -0.239698
+## 
+## [[9]]
+## [1] 1.984474
+## 
+## [[10]]
+## [1] -0.138787
+## 
+## [[11]]
+## [1] 0.4176508
+## 
+## [[12]]
+## [1] 0.9817528
+## 
+## [[13]]
+## [1] -0.3926954
+## 
+## [[14]]
+## [1] -1.039669
+## 
+## [[15]]
+## [1] 1.782229
+## 
+## [[16]]
+## [1] -2.311069
+## 
+## [[17]]
+## [1] 0.8786046
+## 
+## [[18]]
+## [1] 0.03580672
+## 
+## [[19]]
+## [1] 1.012829
+## 
+## [[20]]
+## [1] 0.4322652
+## 
+## [[21]]
+## [1] 2.090819
+## 
+## [[22]]
+## [1] -1.199926
+## 
+## [[23]]
+## [1] 1.589638
+## 
+## [[24]]
+## [1] 1.954652
+## 
+## [[25]]
+## [1] 0.004937777
+## 
+## [[26]]
+## [1] -2.451706
+## 
+## [[27]]
+## [1] 0.4772373
+## 
+## [[28]]
+## [1] -0.5965582
+## 
+## [[29]]
+## [1] 0.7922033
+## 
+## [[30]]
+## [1] 0.2896367
+## 
+## [[31]]
+## [1] 2.738939
+## 
+## [[32]]
+## [1] 2.31896
+## 
+## [[33]]
+## [1] 3.076164
+## 
+## [[34]]
+## [1] 1.715842
+## 
+## [[35]]
+## [1] 1.223325
+## 
+## [[36]]
+## [1] 1.40434
+## 
+## [[37]]
+## [1] 0.2740202
+## 
+## [[38]]
+## [1] 1.097416
+## 
+## [[39]]
+## [1] 1.440938
+## 
+## [[40]]
+## [1] 1.753487
+## 
+## [[41]]
+## [1] 1.616414
+## 
+## [[42]]
+## [1] 0.04089682
+## 
+## [[43]]
+## [1] 1.158295
+## 
+## [[44]]
+## [1] 3.903547
+## 
+## [[45]]
+## [1] 2.622494
+## 
+## [[46]]
+## [1] 3.99092
+## 
+## [[47]]
+## [1] 1.694516
+## 
+## [[48]]
+## [1] 1.909156
+## 
+## [[49]]
+## [1] 1.815839
+## 
+## [[50]]
+## [1] 0.8012322
+## 
+## [[51]]
+## [1] 1.161713
+## 
+## [[52]]
+## [1] 4.066301
+## 
+## [[53]]
+## [1] 1.437753
+## 
+## [[54]]
+## [1] 3.275716
+## 
+## [[55]]
+## [1] 0.9524274
+## 
+## [[56]]
+## [1] 0.03412176
+## 
+## [[57]]
+## [1] 1.677029
+## 
+## [[58]]
+## [1] 2.935863
+## 
+## [[59]]
+## [1] 3.13923
+## 
+## [[60]]
+## [1] 3.671619
+## 
+## [[61]]
+## [1] 3.211758
+## 
+## [[62]]
+## [1] 7.031243
+## 
+## [[63]]
+## [1] 4.296856
+## 
+## [[64]]
+## [1] 5.158165
+## 
+## [[65]]
+## [1] 5.506235
+## 
+## [[66]]
+## [1] 4.180005
+## 
+## [[67]]
+## [1] 3.001153
+## 
+## [[68]]
+## [1] 4.520707
+## 
+## [[69]]
+## [1] 5.08418
+## 
+## [[70]]
+## [1] 4.104513
+## 
+## [[71]]
+## [1] 4.078724
+## 
+## [[72]]
+## [1] 5.33045
+## 
+## [[73]]
+## [1] 4.858339
+## 
+## [[74]]
+## [1] 5.434848
+## 
+## [[75]]
+## [1] 4.946277
+## 
+## [[76]]
+## [1] 4.09289
+## 
+## [[77]]
+## [1] 6.303512
+## 
+## [[78]]
+## [1] 5.77179
+## 
+## [[79]]
+## [1] 6.052526
+## 
+## [[80]]
+## [1] 3.589962
+## 
+## [[81]]
+## [1] 5.995985
+## 
+## [[82]]
+## [1] 3.304235
+## 
+## [[83]]
+## [1] 4.466628
+## 
+## [[84]]
+## [1] 3.627731
+## 
+## [[85]]
+## [1] 2.79208
+## 
+## [[86]]
+## [1] 6.822123
+## 
+## [[87]]
+## [1] 4.346607
+## 
+## [[88]]
+## [1] 4.715319
+## 
+## [[89]]
+## [1] 4.61305
+## 
+## [[90]]
+## [1] 5.386695</code></pre>
+<pre class="r"><code>map_dfr(s_df, mean)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##       a     b     c
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.96  4.75</code></pre>
+<pre class="r"><code># define my own function to return number of negative values in each column
+apply(s_matrix, 2, function(x) length(x[x&lt;0]))</code></pre>
+<pre><code>## [1] 11  0  0</code></pre>
+<pre class="r"><code>map(s_df, function(x) length(x[x&lt;0]))</code></pre>
+<pre><code>## $a
+## [1] 11
+## 
+## $b
+## [1] 0
+## 
+## $c
+## [1] 0</code></pre>
+<pre class="r"><code>map(.x = s_df, ~length(.x[.x&lt;0]))   # handy </code></pre>
+<pre><code>## $a
+## [1] 11
+## 
+## $b
+## [1] 0
+## 
+## $c
+## [1] 0</code></pre>
+<pre class="r"><code># define my own function to return mean and sd in each column 
+mean_sd = function(x){
+  tibble(mean = mean(x),
+         sd = sd(x))
+}
+
+# use map family 
+map(s_df, mean_sd) # return list </code></pre>
+<pre><code>## $a
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.17
+## 
+## $b
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  1.96  1.15
+## 
+## $c
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  4.75  1.09</code></pre>
+<pre class="r"><code>map_dfr(s_df, mean_sd, .id = &quot;input&quot;)  # return df by row binding </code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   input  mean    sd
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a     0.229  1.17
+## 2 b     1.96   1.15
+## 3 c     4.75   1.09</code></pre>
+<pre class="r"><code>map(s_df, mean_sd) %&gt;% bind_rows(.id = &quot;input&quot;) # equivalent</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   input  mean    sd
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a     0.229  1.17
+## 2 b     1.96   1.15
+## 3 c     4.75   1.09</code></pre>
+<pre class="r"><code>map_dfr(s_df, ~tibble(mean = mean(.x), sd = sd(.x)), .id = &quot;input&quot;) # equivalent</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   input  mean    sd
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a     0.229  1.17
+## 2 b     1.96   1.15
+## 3 c     4.75   1.09</code></pre>
+<pre class="r"><code>map_dfc(s_df, mean_sd)  # return df by column binding, bind_cols has no parapeter of .id</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##    mean    sd mean1   sd1 mean2   sd2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.17  1.96  1.15  4.75  1.09</code></pre>
+<pre class="r"><code>map(s_df, mean_sd) %&gt;% bind_cols() # equivalent</code></pre>
+<pre><code>## # A tibble: 1 x 6
+##    mean    sd mean1   sd1 mean2   sd2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.17  1.96  1.15  4.75  1.09</code></pre>
+<pre class="r"><code># use apply 
+apply(s_matrix, 2, mean_sd)  # return list </code></pre>
+<pre><code>## [[1]]
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.17
+## 
+## [[2]]
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  1.96  1.15
+## 
+## [[3]]
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  4.75  1.09</code></pre>
+<pre class="r"><code>apply(s_df, 2, mean_sd) # return list, the same as map</code></pre>
+<pre><code>## $a
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1 0.229  1.17
+## 
+## $b
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  1.96  1.15
+## 
+## $c
+## # A tibble: 1 x 2
+##    mean    sd
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1  4.75  1.09</code></pre>
+<p><code>apply</code>is mainly for matrix (df works too). It can work on columns or rows and returns either vector or list. <code>apply</code> doesn’t work for vector or list, as it requires <code>dim</code> to be positve.</p>
+<p>map doesn’t work on rows and returns always lists. map is more specialized on df and can write functions in a simple way.</p>
+</div>
+<div id="sapply-and-lapply" class="section level1">
+<h1>sapply and lapply</h1>
+<pre class="r"><code># return a list 
+lapply(1:3, function(x) x^2)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 9</code></pre>
+<pre class="r"><code>map(1:3, ~.x^2)        # equivalent </code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 9</code></pre>
+<pre class="r"><code>sapply(1:3, function(x) x^2, simplify=F)  # equivalent</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 9</code></pre>
+<pre class="r"><code># return a vector
+sapply(1:3, function(x) x^2)</code></pre>
+<pre><code>## [1] 1 4 9</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

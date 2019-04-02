@@ -1,0 +1,87 @@
+---
+title: "iterate_ways"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+This illustrates ways to do iteration in R. 
+
+# simulated dataset
+
+```{r simulate}
+# generate a 30x3 matrix
+set.seed(2)
+s_matrix = cbind(rnorm(30, 0), rnorm(30, 2), rnorm(30, 5))
+
+# genertate a date frame with the same data
+set.seed(2)
+s_df = tibble(a = rnorm(30, 0), b = rnorm(30, 2), c = rnorm(30, 5))
+```
+
+
+# apply
+
+```{r apply}
+# return row means, 1 indicate row
+apply(s_matrix, 1, mean)   # return numeric vector
+apply(s_df, 1, mean)       # return named numeric vector
+
+# return column means, 2 indicate column
+apply(s_matrix, 2, mean)   
+apply(s_df, 2, mean)
+
+# use map family
+map(s_df, mean)  # return list 
+map(s_matrix, mean)  # NOT working for matrix, iterates on every cell and return a list with length 90.
+
+map_dfr(s_df, mean)
+
+# define my own function to return number of negative values in each column
+apply(s_matrix, 2, function(x) length(x[x<0]))
+map(s_df, function(x) length(x[x<0]))
+map(.x = s_df, ~length(.x[.x<0]))   # handy 
+
+
+# define my own function to return mean and sd in each column 
+mean_sd = function(x){
+  tibble(mean = mean(x),
+         sd = sd(x))
+}
+
+# use map family 
+map(s_df, mean_sd) # return list 
+
+map_dfr(s_df, mean_sd, .id = "input")  # return df by row binding 
+map(s_df, mean_sd) %>% bind_rows(.id = "input") # equivalent
+map_dfr(s_df, ~tibble(mean = mean(.x), sd = sd(.x)), .id = "input") # equivalent
+
+map_dfc(s_df, mean_sd)  # return df by column binding, bind_cols has no parapeter of .id
+map(s_df, mean_sd) %>% bind_cols() # equivalent
+
+# use apply 
+apply(s_matrix, 2, mean_sd)  # return list 
+apply(s_df, 2, mean_sd) # return list, the same as map
+
+```
+
+`apply`is mainly for matrix (df works too). It can work on columns or rows and returns either vector or list.
+`apply` doesn't work for vector or list, as it requires `dim` to be positve. 
+
+map doesn't work on rows and returns always lists. map is more specialized on df and can write functions in a simple way.
+
+
+# sapply and lapply
+
+```{r }
+# return a list 
+lapply(1:3, function(x) x^2)
+map(1:3, ~.x^2)        # equivalent 
+sapply(1:3, function(x) x^2, simplify=F)  # equivalent
+
+# return a vector
+sapply(1:3, function(x) x^2)
+
+```
