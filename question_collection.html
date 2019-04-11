@@ -10,8 +10,9 @@
 
 
 
+<meta name="date" content="2019-04-10" />
 
-<title>Resources</title>
+<title>query questions collection</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +20,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -170,6 +174,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -242,21 +341,76 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Resources</h1>
+<h1 class="title toc-ignore">query questions collection</h1>
+<h4 class="date"><em>April 10, 2019</em></h4>
 
 </div>
 
 
-<p>I will compile anything interesting or useful here.</p>
-<ol style="list-style-type: decimal">
-<li><p><a href="ggplot.html">useful functions in ggplot</a></p></li>
-<li><p><a href="dashboard.html">using dashboard for interactive visualization</a></p></li>
-<li><p><a href="compare_apply_map.html">compare apply family and map to do iteration</a></p></li>
-<li><p><a href="question_collection.html">query question collection, solutions offered in R and SQL</a></p></li>
-</ol>
+<p>This question collection is mainly for queries. I will try to provide solutions in R, SQL and maybe Python!</p>
+<div id="question-1" class="section level1">
+<h1>Question 1</h1>
+<p>select the top 3 from each group in a dataset</p>
+<div id="prepare-dataset" class="section level2">
+<h2>prepare dataset</h2>
+<pre class="r"><code>data = tibble(
+       sex = c(rep(&quot;F&quot;,4), rep(&quot;M&quot;,5)),
+       score = c(12,13,11,14,10,12,14,12,15) # there can be ties
+)</code></pre>
+</div>
+<div id="window-functions" class="section level2">
+<h2>window functions</h2>
+<p>The easiest way to do this question is through <em>Window functions</em>.</p>
+<p>Aggregate functions like <code>mean()</code> takes n inputs and produces a single output(down-column function).</p>
+<p>Non-aggregate functions like <code>DateDiff(x1, x2)</code> takes some inputs and produces a single output(across-column function)</p>
+<p>Window functions, in contrast, take n inputs and return n outputs, and the outputs depend on all the inputs. There are several categories of window functions; you’re most likely to need ranking functions and offsets.</p>
+</div>
+<div id="solution-using-r" class="section level2">
+<h2>solution using R</h2>
+<pre class="r"><code>data %&gt;%
+  group_by(sex) %&gt;% 
+  mutate(rank = min_rank(desc(score))) %&gt;%  # ties are considered 
+  filter(rank &lt; 4) %&gt;% 
+  arrange(sex, desc(score))</code></pre>
+<pre><code>## # A tibble: 7 x 3
+## # Groups:   sex [2]
+##   sex   score  rank
+##   &lt;chr&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 F        14     1
+## 2 F        13     2
+## 3 F        12     3
+## 4 M        15     1
+## 5 M        14     2
+## 6 M        12     3
+## 7 M        12     3</code></pre>
+</div>
+<div id="solution-using-sql" class="section level2">
+<h2>solution using sql</h2>
+<pre class="r"><code># select top 3 in whole dataset, SELECT TOP 3 not working (ACCESS version)
+sqldf(&quot;SELECT * FROM data ORDER BY score DESC LIMIT 3&quot;)
+
+# I didn&#39;t find the way to do this using sqldf 
+
+#### this is the sql code ##########
+SELECT *
+FROM(
+ SELECT *, RANK() 
+            OVER (PARTITION BY sex
+                  ORDER BY score DESC) AS rk
+FROM score) AS i
+WHERE rk &lt; 4;
+###################################</code></pre>
+<div class="figure">
+<img src="images/sql_output.png" alt="output" />
+<p class="caption">output</p>
+</div>
+</div>
+</div>
 
 
 
+</div>
+</div>
 
 </div>
 
