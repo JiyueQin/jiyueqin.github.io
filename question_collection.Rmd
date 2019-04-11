@@ -71,3 +71,5 @@ WHERE rk < 4;
 
 
 ![output](images/sql_output.png)
+
+<img src="images/sql_output.png" style="width:75%">
