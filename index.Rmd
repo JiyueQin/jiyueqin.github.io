@@ -1,4 +1,6 @@
-
+---
+title: "Jiyue's Website"
+---
 <div class="row"> 
 <br><br>
 <img src="images/sandiego_single.jpg" style="width:32%; margin-right: 20px" align="left">
