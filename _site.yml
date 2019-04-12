@@ -5,33 +5,43 @@ navbar:
   left: 
     - text: "Home"
       href: index.html
-  
-  right:
-    - text: "About"
-      href: about.html
-    - icon: fa-envelope fa-lg
-      href: mailto:<jq2293@cumc.columbia.edu>
-    - icon: fa-github fa-lg
-      href: http://github.com/JiyueQin/
-    - text: Resources
-      href: resource.html
-    - text: "More"
-      icon: fa-gear
+    - text: "Project"
       menu:
-        - text: "Project"
         - text: "Hadza Variants"
           href: hadza_variant.html
         - text: "iGEM2016"
           href: igem.html
         - text: "the heart project"
           href: heart.html
-        - text: "---------"
-        - text: "Life"
-        - text: "travel"
-          href: travel.html
+    - text: Resources
+      href: resource.html
+    - text: "Resume"
+      href: experience.html
+  right:
+  
+    - icon: fa-envelope fa-lg
+      href: mailto:<jq2293@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/JiyueQin/
+    - icon: fa fa-linkedin
+      href: https://www.linkedin.com/in/jiyueqin/
+  
+    #- text: "More"
+    #  icon: fa-gear
+    #  menu:
+       
+      #  - text: "Project"
+      #  - text: "Hadza Variants"
+      #    href: hadza_variant.html
+      #   - text: "iGEM2016"
+      #    href: igem.html
+      #   - text: "---------"
+      #   - text: "Life"
+      #   - text: "travel"
+      #    href: travel.html 
 
 output:
   html_document:
-    theme: cosmo
+    theme: simplex
     highlight: textmate
     css: style.css

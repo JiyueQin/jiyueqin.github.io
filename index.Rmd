@@ -1,19 +1,35 @@
----
-title: "Jiyue's Website"
-output: html_document
----
+
+<div class="row"> 
+<br><br>
+<img src="images/sandiego_single.jpg" style="width:32%; margin-right: 20px" align="left">
+<br><br><br>
+
+<div class="col-xs-12 col-sm-7">
 
 Hey, welcome to my website.
 
-Currently, my interest is in statistical analysis and ICEBEAR.
+My name is Jiyue Qin.
 
-```{r  out.width = "30%", echo = FALSE}
-knitr::include_graphics("images/icebear.jpg") 
-```
-
-More information about [my academic experience](experience.html)
+I am currenty a first-year M.S. student in Department of Biostatistics, Columbia University.
 
 
-I will also record my projects and life here.. Check MORE icon upper right.
+Facts about me:
 
+- from across the Pacific Ocean but can't swim
 
+- food lover
+
+- passionate about data analysis in healthcare 
+
+</div>
+</div>
+
+<br>
+
+## Some Projects
+
+- [health data analysis of 500 cities in U.S.](heart.html)
+
+- [R Shiny app to calculate heart disease score](https://jiyueqin.shinyapps.io/framingham/)
+
+- [strain level analysis of Hadza hunter-gathers' gut metagenome](hadza_variant.html)
