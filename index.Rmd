@@ -30,8 +30,11 @@ Facts about me:
 
 ## Some Projects
 
+- [R shiny app: patient compliance analysis of e-diary data](https://jiyueqin.shinyapps.io/ediary_compliance/)
+
 - [health data analysis of 500 cities in U.S.](heart.html)
 
 - [R Shiny app to calculate heart disease score](https://jiyueqin.shinyapps.io/framingham/)
 
 - [strain level analysis of Hadza hunter-gathers' gut metagenome](hadza_variant.html)
+

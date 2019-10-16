@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="date" content="2019-04-29" />
+
+<title>RTextTools</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+
+.section h2 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h3 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h4 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h5 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h6 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Keep calm</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="hadza_variant.html">Hadza Variants</a>
+    </li>
+    <li>
+      <a href="igem.html">iGEM2016</a>
+    </li>
+    <li>
+      <a href="heart.html">the heart project</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="resource.html">Resources</a>
+</li>
+<li>
+  <a href="experience.html">Resume</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;jq2293@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/JiyueQin/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/jiyueqin/">
+    <span class="fa fa fa fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">RTextTools</h1>
+<h4 class="date"><em>April 29, 2019</em></h4>
+
+</div>
+
+
+<p>This document will walk you through the main functions in <code>RTextTools</code> package.</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This package can do machine learning to label text data. So it is the classification problem.</p>
+<p>It is archived now so you need to download the local file. Use the code below.</p>
+<pre class="r"><code>if(!&quot;RTextTools&quot; %in% installed.packages()){
+  rtexttools_url = &quot;https://cran.r-project.org/src/contrib/Archive/RTextTools/RTextTools_1.4.2.tar.gz&quot;
+  install.packages(rtexttools_url, repos = NULL, type = &quot;source&quot;)
+}</code></pre>
+</div>
+<div id="work-flow" class="section level1">
+<h1>Work flow</h1>
+<div id="create-a-matrix" class="section level2">
+<h2>1. create a matrix</h2>
+<pre class="r"><code>data(USCongress)
+head(USCongress)</code></pre>
+<pre><code>##   ID cong billnum h_or_sen major
+## 1  1  107    4499       HR    18
+## 2  2  107    4500       HR    18
+## 3  3  107    4501       HR    18
+## 4  4  107    4502       HR    18
+## 5  5  107    4503       HR     5
+## 6  6  107    4504       HR    21
+##                                                                                                                                                                                                                                       text
+## 1                                                                                                                                                                                 To suspend temporarily the duty on Fast Magenta 2 Stage.
+## 2                                                                                                                                                                                 To suspend temporarily the duty on Fast Black 286 Stage.
+## 3                                                                                                                                                                                To suspend temporarily the duty on mixtures of Fluazinam.
+## 4                                                                                                                                                                                  To reduce temporarily the duty on Prodiamine Technical.
+## 5                                                                                                                                                     To amend the Immigration and Nationality Act in regard to Caribbean-born immigrants.
+## 6 To amend title 38, United States Code, to extend the eligibility for housing loans guaranteed by the Secretary of Veterans Affairs under the Native American Housing Loan Pilot Program to veterans who are married to Native Americans.</code></pre>
+<pre class="r"><code>doc_matrix = create_matrix(USCongress$text, language=&quot;english&quot;, removeNumbers=TRUE,
+stemWords=TRUE, removeSparseTerms=0.998)
+
+# removeSparseTerms is set to reduce the size of the matrix</code></pre>
+<p><code>USCongress</code> data has labeled bills from the United States Congress, with 6 columns and 4449 rows.</p>
+<p><code>major</code> is a manually labeled topic code corresponding to the subject of the bill. <code>text</code> is the content of the bill.</p>
+<p>A document-term matrix is created using <code>create_matrix</code> from <code>tm</code> package.</p>
+</div>
+<div id="create-a-container" class="section level2">
+<h2>2. create a container</h2>
+<pre class="r"><code>container = create_container(doc_matrix, USCongress$major, trainSize=1:4000,
+testSize=4001:4449, virgin=FALSE)</code></pre>
+<p>The first 4000 documents(records) are traning dataset and the remaining 449 are test dataset.</p>
+<p><code>virgin</code> : <code>FALSE</code> if all data in the training and testing sets have corresponding labels. <code>TRUE</code> if testing set is unclassified data with no known true values.</p>
+<p><code>container@training_matrix</code> is the x and <code>container@training_codes</code> is the y to fit the following models.</p>
+</div>
+<div id="training-models" class="section level2">
+<h2>3. training models</h2>
+<pre class="r"><code>SVM &lt;- train_model(container,&quot;SVM&quot;)
+#GLMNET &lt;- train_model(container,&quot;GLMNET&quot;)
+#MAXENT &lt;- train_model(container,&quot;MAXENT&quot;)
+#SLDA &lt;- train_model(container,&quot;SLDA&quot;)
+BOOSTING &lt;- train_model(container,&quot;BOOSTING&quot;)
+#BAGGING &lt;- train_model(container,&quot;BAGGING&quot;)
+RF &lt;- train_model(container,&quot;RF&quot;)
+#NNET &lt;- train_model(container,&quot;NNET&quot;)
+#TREE &lt;- train_model(container,&quot;TREE&quot;)</code></pre>
+</div>
+<div id="prediction-using-trained-model" class="section level2">
+<h2>4. prediction using trained model</h2>
+<pre class="r"><code>SVM_CLASSIFY &lt;- classify_model(container, SVM)
+BOOSTING_CLASSIFY &lt;- classify_model(container, BOOSTING)
+RF_CLASSIFY &lt;- classify_model(container, RF)</code></pre>
+</div>
+<div id="analytics" class="section level2">
+<h2>5. analytics</h2>
+<pre class="r"><code>svm_ana = create_analytics(container, SVM_CLASSIFY)
+# label summay 
+svm_ana@label_summary</code></pre>
+<pre><code>##    NUM_MANUALLY_CODED NUM_CONSENSUS_CODED NUM_PROBABILITY_CODED
+## 1                   9                  18                    18
+## 2                   5                   3                     3
+## 3                  66                  67                    67
+## 4                  24                  22                    22
+## 5                  33                  30                    30
+## 6                  27                  25                    25
+## 7                  24                  26                    26
+## 8                   4                   5                     5
+## 10                 23                  17                    17
+## 12                 28                  40                    40
+## 13                  5                   6                     6
+## 14                  8                   8                     8
+## 15                 24                  23                    23
+## 16                 16                  16                    16
+## 17                 14                  11                    11
+## 18                 19                  15                    15
+## 19                  7                   9                     9
+## 20                 52                  49                    49
+## 21                 60                  59                    59
+## 99                  1                   0                     0
+##    PCT_CONSENSUS_CODED PCT_PROBABILITY_CODED PCT_CORRECTLY_CODED_CONSENSUS
+## 1            200.00000             200.00000                      77.77778
+## 2             60.00000              60.00000                      20.00000
+## 3            101.51515             101.51515                      89.39394
+## 4             91.66667              91.66667                      75.00000
+## 5             90.90909              90.90909                      69.69697
+## 6             92.59259              92.59259                      81.48148
+## 7            108.33333             108.33333                      75.00000
+## 8            125.00000             125.00000                      50.00000
+## 10            73.91304              73.91304                      60.86957
+## 12           142.85714             142.85714                      71.42857
+## 13           120.00000             120.00000                      60.00000
+## 14           100.00000             100.00000                      50.00000
+## 15            95.83333              95.83333                      66.66667
+## 16           100.00000             100.00000                      56.25000
+## 17            78.57143              78.57143                      57.14286
+## 18            78.94737              78.94737                      73.68421
+## 19           128.57143             128.57143                      71.42857
+## 20            94.23077              94.23077                      78.84615
+## 21            98.33333              98.33333                      81.66667
+## 99             0.00000               0.00000                       0.00000
+##    PCT_CORRECTLY_CODED_PROBABILITY
+## 1                         77.77778
+## 2                         20.00000
+## 3                         89.39394
+## 4                         75.00000
+## 5                         69.69697
+## 6                         81.48148
+## 7                         75.00000
+## 8                         50.00000
+## 10                        60.86957
+## 12                        71.42857
+## 13                        60.00000
+## 14                        50.00000
+## 15                        66.66667
+## 16                        56.25000
+## 17                        57.14286
+## 18                        73.68421
+## 19                        71.42857
+## 20                        78.84615
+## 21                        81.66667
+## 99                         0.00000</code></pre>
+<pre class="r"><code>svm_ana@label_summary %&gt;% map(sum) </code></pre>
+<pre><code>## $NUM_MANUALLY_CODED
+## [1] 449
+## 
+## $NUM_CONSENSUS_CODED
+## [1] 449
+## 
+## $NUM_PROBABILITY_CODED
+## [1] 449
+## 
+## $PCT_CONSENSUS_CODED
+## [1] 1981.275
+## 
+## $PCT_PROBABILITY_CODED
+## [1] 1981.275
+## 
+## $PCT_CORRECTLY_CODED_CONSENSUS
+## [1] 1266.333
+## 
+## $PCT_CORRECTLY_CODED_PROBABILITY
+## [1] 1266.333</code></pre>
+<pre class="r"><code># algorithm summary
+svm_ana@algorithm_summary</code></pre>
+<pre><code>##    SVM_PRECISION SVM_RECALL SVM_FSCORE
+## 1           0.39       0.78       0.52
+## 2           0.33       0.20       0.25
+## 3           0.88       0.89       0.88
+## 4           0.82       0.75       0.78
+## 5           0.77       0.70       0.73
+## 6           0.88       0.81       0.84
+## 7           0.69       0.75       0.72
+## 8           0.40       0.50       0.44
+## 10          0.82       0.61       0.70
+## 12          0.50       0.71       0.59
+## 13          0.50       0.60       0.55
+## 14          0.50       0.50       0.50
+## 15          0.70       0.67       0.68
+## 16          0.56       0.56       0.56
+## 17          0.73       0.57       0.64
+## 18          0.93       0.74       0.82
+## 19          0.56       0.71       0.63
+## 20          0.84       0.79       0.81
+## 21          0.83       0.82       0.82
+## 99           NaN       0.00        NaN</code></pre>
+<pre class="r"><code># document summary
+head(svm_ana@document_summary)</code></pre>
+<pre><code>##   SVM_LABEL  SVM_PROB MANUAL_CODE CONSENSUS_CODE CONSENSUS_AGREE
+## 1        12 0.7501403          12             12               1
+## 2         5 0.8051251           5              5               1
+## 3        15 0.7263768          15             15               1
+## 4        10 0.8752778          10             10               1
+## 5         3 0.9994907           3              3               1
+## 6        14 0.8172150          18             14               1
+##   CONSENSUS_INCORRECT PROBABILITY_CODE PROBABILITY_INCORRECT
+## 1                   0               12                     0
+## 2                   0                5                     0
+## 3                   0               15                     0
+## 4                   0               10                     0
+## 5                   0                3                     0
+## 6                   1               14                     1</code></pre>
+<pre class="r"><code>analytics &lt;- create_analytics(container,
+       cbind(SVM_CLASSIFY,
+       BOOSTING_CLASSIFY,
+       RF_CLASSIFY))
+
+summary(analytics)</code></pre>
+<pre><code>## ENSEMBLE SUMMARY
+## 
+##        n-ENSEMBLE COVERAGE n-ENSEMBLE RECALL
+## n &gt;= 1                1.00              0.75
+## n &gt;= 2                0.94              0.77
+## n &gt;= 3                0.67              0.87
+## 
+## 
+## ALGORITHM PERFORMANCE
+## 
+##        SVM_PRECISION           SVM_RECALL           SVM_FSCORE 
+##               0.6315               0.6330               0.6230 
+## LOGITBOOST_PRECISION    LOGITBOOST_RECALL    LOGITBOOST_FSCORE 
+##               0.5855               0.6055               0.5755 
+##    FORESTS_PRECISION       FORESTS_RECALL       FORESTS_FSCORE 
+##               0.6480               0.5945               0.6045</code></pre>
+<pre class="r"><code># CREATE THE data.frame SUMMARIES
+topic_summary &lt;- analytics@label_summary
+alg_summary &lt;- analytics@algorithm_summary
+ens_summary &lt;-analytics@ensemble_summary
+doc_summary &lt;- analytics@document_summary</code></pre>
+<div id="label_summary" class="section level3">
+<h3>label_summary</h3>
+<ul>
+<li><p><code>NUM_MANUALLY_CODED</code>: the number of documents that were manually coded with that unique label</p></li>
+<li><p><code>NUM_CONSENSUS_CODED</code>: number of documents that were coded using the ensemble method</p></li>
+<li><p><code>NUM_PROBABILITY_CODED</code>: the number of documents that were coded using the probability method</p></li>
+<li><p><code>PCT_CONSENSUS_CODED</code>: rate of over- or under-coding with ensemble method</p></li>
+<li><p><code>PCT_PROBABILITY_CODED</code>: rate of over- or under-coding with probability method</p></li>
+<li><p><code>PCT_CORRECTLY_CODED_CONSENSUS</code>: the percentage that were correctly coded using either the ensemble method</p></li>
+<li><p><code>PCT_CORRECTLY_CODED_PROBABILITY</code>: the percentage that were correctly coded using probability method</p></li>
+</ul>
+</div>
+<div id="algorithm_summary" class="section level3">
+<h3>algorithm_summary</h3>
+<ul>
+<li><p>precision: True Positive/Predicted Positive</p></li>
+<li><p>recall:True Positive/Actual Positive = sensitivity</p></li>
+<li><p>F-score: weighted harmonic mean of precision and recall</p></li>
+</ul>
+</div>
+<div id="document_summary" class="section level3">
+<h3>document_summary</h3>
+<ul>
+<li><p><code>ALGORITHM_LABEL</code>: each algorithm’s prediction</p></li>
+<li><p><code>ALGORITHM_PROB</code>: the algorithm’s probability score</p></li>
+<li><p><code>MANUAL_CODE</code>: each document’s manual label</p></li>
+<li><p><code>CONSENSUS_CODE</code>: the label using the consensus method</p></li>
+<li><p><code>CONSENSUS_AGREE</code> the number of algorithms that agreed on the same label</p></li>
+<li><p><code>CONSENSUS_INCORRECT</code>: if the prediction using consensus method is right, 1 = wrong</p></li>
+<li><p><code>PROBABILITY_CODE</code>: the label using the highest probability method</p></li>
+<li><p><code>PROBABILITY_INCORRECT</code>: if the prediction using probability method is right, 1 = right</p></li>
+</ul>
+</div>
+</div>
+<div id="cross-validation" class="section level2">
+<h2>cross validation</h2>
+<p>Above training and testing process is done using the validation set approach, meaning using one part of data to train and the remaining part to test.</p>
+<p>We can also use cross validation based on the full dataset.</p>
+<pre class="r"><code>SVM &lt;- cross_validate(container, 4, &quot;SVM&quot;)</code></pre>
+<pre><code>## Fold 1 Out of Sample Accuracy = 0.6904762
+## Fold 2 Out of Sample Accuracy = 0.7112933
+## Fold 3 Out of Sample Accuracy = 0.7076383
+## Fold 4 Out of Sample Accuracy = 0.7133929</code></pre>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

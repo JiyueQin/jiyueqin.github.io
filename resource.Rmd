@@ -11,3 +11,5 @@ I will compile anything interesting or useful here.
 3. [compare apply family and map to do iteration](compare_apply_map.html)
 
 4. [query question collection, solutions offered in R and SQL](question_collection.html)
+
+5. [Turtorial of R package RTextTools(machine learning for text data label)](RTextTools_turtorial.html)

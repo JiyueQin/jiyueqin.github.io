@@ -1,0 +1,168 @@
+---
+title: "RTextTools"
+date: "April 29, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(RTextTools)
+library(tidyverse)
+```
+
+This document will walk you through the main functions in `RTextTools` package. 
+
+# Introduction
+
+This package can do machine learning to label text data. So it is the classification problem.
+
+It is archived now so you need to download the local file. Use the code below.
+
+```{r download, eval=F}
+if(!"RTextTools" %in% installed.packages()){
+  rtexttools_url = "https://cran.r-project.org/src/contrib/Archive/RTextTools/RTextTools_1.4.2.tar.gz"
+  install.packages(rtexttools_url, repos = NULL, type = "source")
+}
+```
+
+# Work flow
+
+## 1. create a matrix
+
+```{r step1}
+
+data(USCongress)
+head(USCongress)
+
+doc_matrix = create_matrix(USCongress$text, language="english", removeNumbers=TRUE,
+stemWords=TRUE, removeSparseTerms=0.998)
+
+# removeSparseTerms is set to reduce the size of the matrix
+```
+
+`USCongress` data has labeled bills from the United States Congress, with `r ncol(USCongress)` columns and `r nrow(USCongress)` rows. 
+
+`major` is a manually labeled topic code corresponding to the subject of the bill.
+`text` is the content of the bill.
+
+A document-term matrix is created using `create_matrix` from `tm` package. 
+
+## 2. create a container
+
+```{r step2}
+container = create_container(doc_matrix, USCongress$major, trainSize=1:4000,
+testSize=4001:4449, virgin=FALSE)
+```
+
+The first 4000 documents(records) are traning dataset and the remaining 449 are test dataset.
+
+`virgin` : 
+`FALSE` if all data in the training and testing sets have corresponding labels.
+`TRUE ` if testing set is unclassified data with no known true values.
+
+`container@training_matrix` is the x and `container@training_codes` is the y to fit the following models.
+
+## 3. training models
+
+```{r step3}
+SVM <- train_model(container,"SVM")
+#GLMNET <- train_model(container,"GLMNET")
+#MAXENT <- train_model(container,"MAXENT")
+#SLDA <- train_model(container,"SLDA")
+BOOSTING <- train_model(container,"BOOSTING")
+#BAGGING <- train_model(container,"BAGGING")
+RF <- train_model(container,"RF")
+#NNET <- train_model(container,"NNET")
+#TREE <- train_model(container,"TREE")
+```
+
+## 4. prediction using trained model
+
+```{r step4}
+SVM_CLASSIFY <- classify_model(container, SVM)
+BOOSTING_CLASSIFY <- classify_model(container, BOOSTING)
+RF_CLASSIFY <- classify_model(container, RF)
+```
+
+
+## 5. analytics
+
+```{r step5}
+svm_ana = create_analytics(container, SVM_CLASSIFY)
+# label summay 
+svm_ana@label_summary
+svm_ana@label_summary %>% map(sum) 
+
+# algorithm summary
+svm_ana@algorithm_summary
+
+# document summary
+head(svm_ana@document_summary)
+
+
+analytics <- create_analytics(container,
+       cbind(SVM_CLASSIFY,
+       BOOSTING_CLASSIFY,
+       RF_CLASSIFY))
+
+summary(analytics)
+# CREATE THE data.frame SUMMARIES
+topic_summary <- analytics@label_summary
+alg_summary <- analytics@algorithm_summary
+ens_summary <-analytics@ensemble_summary
+doc_summary <- analytics@document_summary
+```
+
+### label_summary
+
+- `NUM_MANUALLY_CODED`: 
+the number of documents that were manually coded with that unique label
+
+- `NUM_CONSENSUS_CODED`: number of documents that were coded using the ensemble method
+
+- `NUM_PROBABILITY_CODED`: the number of documents that were coded using the probability method
+
+- `PCT_CONSENSUS_CODED`: rate of over- or under-coding with ensemble method 
+
+- `PCT_PROBABILITY_CODED`: rate of over- or under-coding with probability method 
+
+- `PCT_CORRECTLY_CODED_CONSENSUS`: the percentage that were correctly coded using either the ensemble
+method
+
+- `PCT_CORRECTLY_CODED_PROBABILITY`: the percentage that were correctly coded using probability method
+
+### algorithm_summary
+
+- precision: True Positive/Predicted Positive 
+
+- recall:True Positive/Actual Positive = sensitivity
+
+- F-score: weighted harmonic mean of precision and recall
+
+### document_summary
+
+- `ALGORITHM_LABEL`: each algorithm’s prediction
+
+- `ALGORITHM_PROB`: the algorithm’s probability score
+
+- `MANUAL_CODE`: each document's manual label
+
+- `CONSENSUS_CODE`: the label using the consensus method
+
+- `CONSENSUS_AGREE` the number of algorithms that agreed on the same label
+
+- `CONSENSUS_INCORRECT`: if the prediction using consensus method is right, 1 = wrong
+
+- `PROBABILITY_CODE`: the label using the highest probability method
+
+- `PROBABILITY_INCORRECT`: if the prediction using probability method is right, 1 = right
+
+
+## cross validation
+
+Above training and testing process is done using the validation set approach, meaning using one part of data to train and the remaining part to test.
+
+We can also use cross validation based on the full dataset.
+
+```{r cross}
+SVM <- cross_validate(container, 4, "SVM")
+```
