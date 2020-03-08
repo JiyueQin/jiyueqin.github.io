@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -25,9 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -76,9 +75,7 @@ h6 {
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -92,7 +89,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -102,6 +98,9 @@ img {
 }
 button.code-folding-btn:focus {
   outline: none;
+}
+summary {
+  display: list-item;
 }
 </style>
 
@@ -117,7 +116,6 @@ body {
   padding-top: 46px;
   margin-top: -46px;
 }
-
 .section h2 {
   padding-top: 46px;
   margin-top: -46px;
@@ -137,6 +135,43 @@ body {
 .section h6 {
   padding-top: 46px;
   margin-top: -46px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -158,47 +193,66 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
 
 <!-- code folding -->
 
 
-
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -212,6 +266,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -247,8 +307,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -257,6 +315,16 @@ div.tocify {
 
 
 </style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -278,36 +346,15 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Keep calm</a>
+      <a class="navbar-brand" href="index.html">Home</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Project
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="hadza_variant.html">Hadza Variants</a>
-    </li>
-    <li>
-      <a href="igem.html">iGEM2016</a>
-    </li>
-    <li>
-      <a href="heart.html">the heart project</a>
-    </li>
-  </ul>
-</li>
-<li>
   <a href="resource.html">Resources</a>
 </li>
 <li>
-  <a href="experience.html">Resume</a>
+  <a href="resume.html">Resume</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -358,17 +405,15 @@ s_df = tibble(a = rnorm(30, 0), b = rnorm(30, 2), c = rnorm(30, 5))</code></pre>
 <h1>apply</h1>
 <pre class="r"><code># return row means, 1 indicate row
 apply(s_matrix, 1, mean)   # return numeric vector</code></pre>
-<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709
-##  [8] 1.792808 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242
-## [15] 3.117000 1.924247 2.958878 2.572251 2.960398 1.607820 3.082839
-## [22] 2.056870 2.498006 2.952699 1.249815 1.468179 2.166958 2.351541
-## [29] 2.848161 3.115983</code></pre>
+<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709 1.792808
+##  [9] 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242 3.117000 1.924247
+## [17] 2.958878 2.572251 2.960398 1.607820 3.082839 2.056870 2.498006 2.952699
+## [25] 1.249815 1.468179 2.166958 2.351541 2.848161 3.115983</code></pre>
 <pre class="r"><code>apply(s_df, 1, mean)       # return named numeric vector</code></pre>
-<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709
-##  [8] 1.792808 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242
-## [15] 3.117000 1.924247 2.958878 2.572251 2.960398 1.607820 3.082839
-## [22] 2.056870 2.498006 2.952699 1.249815 1.468179 2.166958 2.351541
-## [29] 2.848161 3.115983</code></pre>
+<pre><code>##  [1] 1.684594 3.178351 2.986955 1.914544 2.216436 1.905588 1.327709 1.792808
+##  [9] 2.836531 1.906405 2.037596 2.117700 1.874646 2.766242 3.117000 1.924247
+## [17] 2.958878 2.572251 2.960398 1.607820 3.082839 2.056870 2.498006 2.952699
+## [25] 1.249815 1.468179 2.166958 2.351541 2.848161 3.115983</code></pre>
 <pre class="r"><code># return column means, 2 indicate column
 apply(s_matrix, 2, mean)   </code></pre>
 <pre><code>## [1] 0.2286718 1.9649504 4.7541528</code></pre>
@@ -812,6 +857,13 @@ sapply(1:3, function(x) x^2)</code></pre>
 <pre><code>## [1] 1 4 9</code></pre>
 </div>
 
+<br><br><br><br>
+<footer class="footer-distributed">
+
+   <img src="images/profile.JPG" alt = "profile" height="38" width="38">  
+   <p>  Jiyue Qin 2019 &copy;</p>
+
+</footer>
 
 
 </div>
@@ -830,6 +882,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

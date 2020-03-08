@@ -1,42 +1,155 @@
 ---
-title: "Jiyue's Website"
+title: 'Jiyue Qin'
 ---
-<div class="row"> 
-<br><br>
-<img src="images/sandiego_single.jpg" style="width:32%; margin-right: 20px" align="left">
-<br><br><br>
 
-<div class="col-xs-12 col-sm-7">
+<div class="project-container">
+<img src="images/sandiego_single.jpg" style="width:32%;margin-right:50px; margin-top:-10px;"><div class = "project-text">
 
-Hey, welcome to my website.
-
-My name is Jiyue Qin.
-
-I am currenty a second-year M.S. student in Department of Biostatistics, Columbia University.
-
-
-Facts about me:
-
-- from across the Pacific Ocean but can't swim
-
-- food lover
-
-- passionate about data analysis in healthcare 
-
+<p class="name">Hey, I'm Jiyue.</p>
+<hr class = "hr_style"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<p><i class="fa fa-graduation-cap" style="font-size:15px;margin-left:-2px"></i><span class="intro-text" style="margin-left:3px;">M.S., Department of Biostatistics, Columbia University</span></p>
+<p><i class="fa fa-location-arrow" style="font-size:18px;"></i><span class="intro-text" style = "margin-left:6px;">NYC</span></p>
+<p><i class="fa fa-home" style="font-size:18px;"></i><span class="intro-text">From across the Pacific Ocean but can't swim</span></p>
+<p><i class="fa fa-heart" style="font-size:16px;"></i><span class="intro-text">Boba Tea</span></p>
+<p><i class="fa fa-code-fork" style="font-size:18px;margin-left:5px"></i><span class="intro-text">Data Science in Health Care</span></p>
 </div>
+
 </div>
 
 <br>
 
-## Some Projects
 
-- [R shiny app: patient compliance analysis of e-diary data](https://jiyueqin.shinyapps.io/ediary_compliance/)
+<h3> What I have done in my 20s </h3>
 
-- [Columbia landmark detection](https://jiyueqin.github.io/landmark_recognition/)
 
-- [health data analysis of 500 cities in U.S.](heart.html)
 
-- [R Shiny app to calculate heart disease score](https://jiyueqin.shinyapps.io/framingham/)
+<div class="project-container">
 
-- [strain level analysis of Hadza hunter-gathers' gut metagenome](hadza_variant.html)
+   <img src="images/project/cancer.png" alt = "profile"><div class= "project-text">
+   <p class = "project_title"> Deep Learning for Cancer Detection from Pathology Images</p>
+   <br>
+   Using hematoxylin and eosin (H&E) stained whole-slide images of lymph node sections, an algorithm was developed to automate detection of cancer metastases in these images. To cope with the extremely large size of the image, patch extraction and transfer learning were utilized. 
+
+   [Read more](cancer_detection.html)
+   </div>
+   
+</div>
+
+
+
+<div class="project-container">
+
+   <img src="images/project/calendar.jpg" alt = "profile"><div class= "project-text">
+   <p class = "project_title">  Patient Compliance Analysis and Prediction in Clinical Trials </p>
+   <br>
+   
+   - Calendar heatmap was built to visualize compliance rate in the practice of eCOA.
+   
+   - Holiday, weekday and length of the instrument are some of the significant factors that can affect compliance.
+  
+   - The best predictive model using random forest achieves a test AUC of 0.79.
+   
+   - R shiny app was built to streamline this analysis for further clinical trials
+   
+   [Check out this R shiny app](https://jiyueqin.shinyapps.io/ediary_compliance/){target="_blank"}
+   </div>
+   
+</div>
+
+<div class="project-container">
+
+   <img src="images/project/alma.jpg" alt = "profile"><div class= "project-text">
+   <p class = "project_title"> Columbia Landmark Recognition Using CNN</p>
+   <br>
+   A small example of [Tensorflow JavaScript](https://www.tensorflow.org/js){target="_blank"}. Convolutioanl neural networks were built from self-collected landmark images.
+   Future updates will include more landmarks.
+   <p>[Upload your image and try it out](https://jiyueqin.github.io/landmark_recognition/){target="_blank"}</p>
+   </div>
+   
+</div>
+
+
+<div class="project-container">
+
+   <img src="images/project/heart.jpg" alt = "profile"><div class= "project-text">
+   <p class = "project_title"> Health Data Analysis in NYC </p>
+   <br>
+   
+   - Analysis: Correlation of Risk Factors with Coronary Disease and Stroke at Census-tract level(2015-2016)
+   
+   - NYC Map: App showing the prevalence of Health Indicators throughout New York City
+   
+   - [Find Your Risk](https://jiyueqin.shinyapps.io/framingham/){target="_blank"}: App to predict the 10-year cardiovascular risk using the Framingham algorithm
+   
+   [Analysis website](https://alc2279.github.io/p8105_final_project/){target="_blank"}
+   </div>
+   
+</div>
+
+
+<div class="project-container">
+
+   <img src="images/project/hadza.jpg" alt = "profile">
+   <div class= "project-text">
+   <p class="project_title"> Hadza Hunter-gathers' Gut Metagenome Analysis</p>
+   <br>
+   <p>Through variant calling analysis, we found eight prevalent species have significant SNP enrichments in wet season. 83 genes were identified with the most characteristic SNP distributions between wet season and dry season. Many of these genes are from metabolic pathways like carbon metabolism and glycolysis. This implies the impact of seasonal chnages on mutational patterns and functions for gut microbiome of an unindustrialized population.</p>
+   <p>[Preprint of this paper](https://www.biorxiv.org/content/early/2018/09/16/418889){target="_blank"}</p>
+   </div>
+</div>
+
+
+
+<h3> Soon I will be 80 years old </h3>
+<p>I would look back on the journey and feel first time seeing the world just happened yesterday.</p>
+<p>I would be grateful to all the support, joy but also hardship and imperfection.</p>
+<div class="container-all">
+<div class="gallery_container">
+  <img src="images/young.jpg" alt="">
+   <span class="gallery_title">Kindergarten</span>
+  <span class="gallery_text">Good job holding hands!</span>
+</div>
+<div class="gallery_container">
+  <img src="images/stary_night.jpg" alt="">
+  <span class="gallery_title">Starry Night</span>
+  <span class="gallery_text">Got another use out of my flashlight</span>
+</div>
+<div class="gallery_container">
+  <img src="images/roomates.jpg" alt="">
+   <span class="gallery_title">Roomates</span>
+  <span class="gallery_text">Bye, four year dorm life. Hello, old friends!</span>
+</div>
+<div class="gallery_container">
+  <img src="images/tower_berkeley.jpg" alt="">
+   <span class="gallery_title">Sather Tower</span>
+  <span class="gallery_text">First day at Berkeley</span>
+</div>
+<div class="gallery_container">
+  <img src="images/sunset_cliff.jpg" alt="">
+   <span class="gallery_title">Sunset</span>
+  <span class="gallery_text">I love the sunset when I am happy.</span>
+</div>
+<div class="gallery_container">
+  <img src="images/dabie.jpg" alt="">
+   <span class="gallery_title">Dabie Mountain</span>
+  <span class="gallery_text">We made it to the top!</span>
+</div>
+<div class="gallery_container">
+  <img src="images/panda.jpg" alt="">
+   <span class="gallery_title">Chengdu Celebrity</span>
+  <span class="gallery_text">Panpan wants color photos too.</span>
+</div>
+<div class="gallery_container">
+  <img src="images/bellaruby.jpg" alt="">
+   <span class="gallery_title">Bellaruby</span>
+  <span class="gallery_text">Who is that gorgeous?</span>
+</div>
+<div class="gallery_container">
+  <img src="images/thailand.jpg" alt="">
+   <span class="gallery_title">Thailand</span>
+  <span class="gallery_text">We are off to Phuket Island!</span>
+</div>
+</div>
+
 
