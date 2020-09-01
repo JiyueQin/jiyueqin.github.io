@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>A Complete Guide to ICC</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 41px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h2 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h3 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h4 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h5 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.section h6 {
+  padding-top: 46px;
+  margin-top: -46px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="resource.html">Blog</a>
+</li>
+<li>
+  <a href="resume.html">Resume</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:&lt;jq2293@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/JiyueQin/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/jiyueqin/">
+    <span class="fa fa fa fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">A Complete Guide to ICC</h1>
+<h4 class="date">9/1/2020</h4>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Reliability is defined as the extent to which measurements can be replicated. In other words, it reflects not only degree of correlation but also agreement between measurements. Mathematically:</p>
+<p><span class="math display">\[\text{reliability} = \frac{\text{true variance}}{\text{true variance + error variance}}\]</span></p>
+<p>Historically, Pearson correlation coefficient, paired t test, and Bland-Altman plot have been used to evaluate reliability. However, paired t test and Bland-Altman plot aremethods for analyzing agreement, and Pearson correlation coefficient is only a measure of correlation, and hence, they are nonideal measures of reliability. A more desirable measure of reliability should reflect both degree of correlation and agreement between measurements. Intraclass correlation coefficient (ICC) is such an index.</p>
+<p><img src="images/ICC/1_1.png" /></p>
+<p>Nowadays, ICC has been widely used in conservative care medicine to evaluate interrater, test-retest, and intrarater reliability.</p>
+<p><strong>Types of Reliablity</strong></p>
+<p><img src="images/ICC/1_2.png" /></p>
+</div>
+<div id="forms-of-icc" class="section level1">
+<h1>Forms of ICC</h1>
+<p>Shrout and Fleiss in 1979 defined 6 forms of ICC based on:</p>
+<ol style="list-style-type: decimal">
+<li><p>the “Model” (1-way random effects, 2-way random effects, or 2-way fixed effects)</p></li>
+<li><p>the “Type” (single rater/measurement or the mean of k raters/measurements)</p></li>
+</ol>
+<p>McGraw and Wong in 1996(the definition in SPSS) defined 10 forms of ICC based on:</p>
+<ol style="list-style-type: decimal">
+<li><p>the “Model” (1-way random effects, 2-way random effects, or 2-way fixed effects)</p></li>
+<li><p>the “Type” (single rater/measurement or the mean of k raters/measurements)</p></li>
+<li><p>the “Definition” of relationship considered to be important (consistency or absolute agreement).</p></li>
+</ol>
+<p><img src="images/ICC/1_3_correct.jpg" /></p>
+</div>
+<div id="selection-of-icc-form" class="section level1">
+<h1>Selection of ICC Form</h1>
+<p>Since McGraw and Wong’s definition is more complete, now we discuss the selection of correct form of ICC using their definition.</p>
+<div id="model-selection" class="section level2">
+<h2>“Model” Selection</h2>
+<p><strong>1. One-Way Random-Effects Model</strong></p>
+<p>Each subject is rated by a <strong>different</strong> set of raters who were randomly chosen from a larger population of possible raters. For example, in a multicenter study, one set of raters may assess a subgroup of subjects in one center and another set of raters may assess a subgroup of subjects in another center.</p>
+<p><strong>2. Two-Way Random-Effects Model</strong></p>
+<p>Each subject is rated by a <strong>same</strong> set of raters who were randomly chosen from a larger population of possible raters. Here, we plan to generalize our reliability results to any raters who possess the same characteristics as the selected raters in the reliability study.</p>
+<p>This model is appropriate for evaluating rater-based clinical assessmentmethods (eg, passive range of motion) that are designed for routine clinical use by any clinicians with specific characteristics (eg, years of experience) as stated in the reliability study.</p>
+<p><strong>3. Two-Way Mixed-Effects Model</strong></p>
+<p>Each subject is rated by a <strong>same</strong> set of raters and the selected raters are the only raters of interest. Here, the results only represent the reliability of the specific raters involved in the reliability experiment. They cannot be generalized to other raters even if those raters have similar characteristics as the selected raters in the reliability experiment. As a result, this is less commonly used in interrater reliability analysis.</p>
+</div>
+<div id="type-seletion" class="section level2">
+<h2>“Type” Seletion</h2>
+<p>This selection depends on how the measurement protocol will be conducted in actual application.</p>
+<p>For instance, if we plan to use the mean value of 3 raters as an assessment basis, the experimental design of the reliability study should involve 3 raters, and the <strong>“mean of k raters”</strong> type should be selected.</p>
+<p>Conversely, if we plan to use the measurement from a single rater as the basis of the actual measurement, <strong>“single rater”</strong> type should be selected even though the reliability experiment involves 2 or more raters.</p>
+</div>
+<div id="definition-selection" class="section level2">
+<h2>“Definition” Selection</h2>
+<p>For both 2-way random- and 2-way mixed-effects models, there are 2 ICC definitions: “absolute agreement” and “consistency.” Selection of the ICC definition depends on whether we consider absolute agreement or consistency between raters to be more important. Absolute agreement concerns if different raters assign the same score to the same subject. Conversely, consistency definition concerns if raters’ scores to the same group of subjects are correlated in an additive manner.</p>
+<p>Consider an interrater reliability study of 2 raters as an example. In this case, consistency definition concerns the degree to which one rater’s score (y) can be equated to another rater’s score (x) plus a systematic error (c) (ie, y = x + c), whereas absolute agreement concerns about the extent to which y equals x.</p>
+</div>
+</div>
+<div id="reliability-and-icc" class="section level1">
+<h1>Reliability and ICC</h1>
+<p>For interrater reliability, all the ten forms could be possible depending on the situation.</p>
+<p>For test-retest and intrarater reliability, the ICC selection process is more straightforward. The only question to ask is whether the actual application will be based on a single measurement or the mean of multiple measurements.</p>
+<p>As for the “Model” selection, Shrout and Fleiss suggest that 2-way mixed-effects model is appropriate for testing intrarater reliability with multiple scores from the same rater, as it is not reasonable to generalize one rater’s scores to a larger population of raters.</p>
+<p>Similarly, 2-way mixed-effects model should also be used in test-retest reliability study because repeated measurements cannot be regarded as randomized samples.</p>
+<p>In addition, absolute agreement definition should always be chosen for both test-retest and intrarater reliability studies because measurements would be meaningless if there is no agreement between repeated measurements.</p>
+<p>A side note here, the definition from Shrout and Fleiss is still popular among researchers. Looking into the formula, ICC2(k) for two-way random, absolute will give the same value as two-way mixed, absolute. ICC3(k) is for two-way mixed, consistency. We should be careful reporting the form of ICC. For example, <a href="https://jfootankleres.biomedcentral.com/articles/10.1186/s13047-015-0111-8">in this study</a>, it says “ICC(3,1/k) is reported for test-retest reliabilty” and says ‘absolute agreement’ in the footnote. It could be confusing as people might think they used two-way mixed, consistency for this.</p>
+<p><img src="images/ICC/1_4.png" /></p>
+</div>
+<div id="icc-characteristics" class="section level1">
+<h1>ICC Characteristics</h1>
+<ol style="list-style-type: decimal">
+<li><p>If the data sets are identical, all ICC estimates will equal to 1.</p></li>
+<li><p>Generally speaking, ICC of the “mean of k raters” type is larger than the corresponding “single rater” type.</p></li>
+<li><p>The “absolute agreement” definition generally gives a smaller ICC estimate than the “consistency” definition.</p></li>
+<li><p>One-way random-effects model generally gives a smaller ICC estimate than the 2-way models.</p></li>
+<li><p>For the same ICC definition (eg absolute agreement), ICC estimates of both the 2-way random- and mixed-effects models are the same because they use the same formula to calculate the ICC. This brings up an important fact that the difference between 2-way random- and mixed-effects models is not on the calculation but on the experimental design of the reliability study and the interpretation of the results.</p></li>
+</ol>
+<p><img src="images/ICC/1_5.png" /></p>
+</div>
+<div id="icc-interpretation" class="section level1">
+<h1>ICC Interpretation</h1>
+<p>There are no standard values for acceptable reliability using ICC. A low ICC could not only reflect the low degree of rater or measurement agreement but also relate to the lack of variability among the sampled subjects, the small number of subjects, and the small number of raters being tested.</p>
+<p>As a rule of thumb, researchers should try to obtain at least 30 heterogeneous samples and involve at least 3 raters whenever possible when conducting a reliability study.</p>
+<p>Under such conditions, we suggest that ICC values less than 0.5 are indicative of poor reliability, values between 0.5 and 0.75 indicate moderate reliability, values between 0.75 and 0.9 indicate good reliability, and values greater than 0.90 indicate excellent reliability.</p>
+<p>Moreover, the ICC estimate obtained from a reliability study is only an expected value of the true ICC. It is logical to determine the level of reliability (ie, poor, moderate, good, and excellent) by testing whether the obtained ICC value significantly exceeds the suggested values mentioned above using statistical inference.</p>
+</div>
+<div id="report-icc" class="section level1">
+<h1>Report ICC</h1>
+<p>We suggest that the best practice of reporting ICC should include the following items: software information, “Model,” “Type,” and “Definition” selections. In addition, both ICC estimates and their 95% confidence intervals should be reported.</p>
+<p>For instance, ICC estimates and their 95% confident intervals were calculated using SPSS statistical package version 23 (SPSS Inc, Chicago, IL) based on a mean-rating (k = 3), absolute-agreement, 2-way mixed-effects model.</p>
+</div>
+<div id="model-definition" class="section level1">
+<h1>Model Definition</h1>
+<p>This table shows the definition of different models. The case labels 1,2, and 3 are taken from Shrout and Fleiss (1979), who did not formally consider Cases 2A and 3A.</p>
+<p>Consider there are n subjects and k raters. Each row is a subject and each column is a rater.</p>
+<p><img src="images/ICC/2_1.png" /></p>
+<div id="mean-square-expectations" class="section level2">
+<h2>Mean Square Expectations</h2>
+<p><img src="images/ICC/2_2.png" /></p>
+</div>
+<div id="icc-calcaulation" class="section level2">
+<h2>ICC Calcaulation</h2>
+<div id="single-score-icc" class="section level3">
+<h3>single score ICC</h3>
+<p><img src="images/ICC/2_3.png" /></p>
+</div>
+<div id="average-score-icc" class="section level3">
+<h3>average score ICC</h3>
+<p><img src="images/ICC/2_4.png" /></p>
+</div>
+</div>
+</div>
+<div id="r-examples" class="section level1">
+<h1>R examples</h1>
+<p>We’ll use the anxiety data from <code>irr</code> package, which contains the anxiety ratings of 20 subjects, rated by 3 raters. Values are ranging from 1 (not anxious at all) to 6 (extremely anxious).</p>
+<pre class="r"><code>data(&quot;anxiety&quot;)
+head(anxiety, 4)</code></pre>
+<pre><code>##   rater1 rater2 rater3
+## 1      3      3      2
+## 2      3      6      1
+## 3      3      4      4
+## 4      4      6      4</code></pre>
+<p>we’ll consider the function icc() from <code>irr</code> package and the function ICC() from <code>psych</code> package.</p>
+<div id="irr-package" class="section level2">
+<h2><code>irr</code> package</h2>
+<p>Specify model(oneway or twoway), type(consistency or agreement) and unit(single or average). Based on the document for this function, “If a”oneway" model is used, only “consistency” could be computed". Actually, there is only one ICC for single or average in one-way data.And there is no discrimination in agreement and consistency.To be accurte, it should show how the scores from different raters for a single subject are similar(and thus, absolute agreement)</p>
+<pre class="r"><code>irr1 = icc(
+  anxiety, model = &quot;oneway&quot;, 
+  unit = &quot;single&quot;
+  )
+
+irr1k = icc(
+  anxiety, model = &quot;oneway&quot;, 
+  unit = &quot;average&quot;
+  )
+
+irr2A= icc(
+  anxiety, model = &quot;twoway&quot;, 
+  type = &quot;agreement&quot;, unit = &quot;single&quot;
+  )
+
+irr2AK= icc(
+  anxiety, model = &quot;twoway&quot;, 
+  type = &quot;agreement&quot;, unit = &quot;average&quot;
+  )
+
+irr2C= icc(
+  anxiety, model = &quot;twoway&quot;, 
+  type = &quot;consistency&quot;, unit = &quot;single&quot;
+  )
+
+irr2CK= icc(
+  anxiety, model = &quot;twoway&quot;, 
+  type = &quot;consistency&quot;, unit = &quot;average&quot;
+  )
+
+
+
+
+icc_summary_using_irr = function(icc_from_irr){
+  tibble(form = paste(icc_from_irr$model, icc_from_irr$type, icc_from_irr$unit, sep = &#39;,&#39;),
+       name = icc_from_irr$icc.name,
+       icc = icc_from_irr$value,
+       lower = icc_from_irr$lbound,
+       upper = icc_from_irr$ubound) %&gt;% 
+  mutate_if(is.numeric, ~round(.,3)) %&gt;% 
+  mutate(icc_CI = paste0(&#39;(&#39;, lower,&#39;,&#39; , upper, &#39;)&#39;)) %&gt;% 
+  select(-lower, -upper)
+  
+  
+}
+
+
+map_df(list(irr1, irr1k, irr2A, irr2AK, irr2C, irr2CK),icc_summary_using_irr ) %&gt;% 
+  kable() %&gt;% kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+form
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+icc
+</th>
+<th style="text-align:left;">
+icc_CI
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+oneway,consistency,single
+</td>
+<td style="text-align:left;">
+ICC(1)
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:left;">
+(-0.077,0.484)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+oneway,consistency,average
+</td>
+<td style="text-align:left;">
+ICC(3)
+</td>
+<td style="text-align:right;">
+0.389
+</td>
+<td style="text-align:left;">
+(-0.275,0.738)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+twoway,agreement,single
+</td>
+<td style="text-align:left;">
+ICC(A,1)
+</td>
+<td style="text-align:right;">
+0.198
+</td>
+<td style="text-align:left;">
+(-0.039,0.494)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+twoway,agreement,average
+</td>
+<td style="text-align:left;">
+ICC(A,3)
+</td>
+<td style="text-align:right;">
+0.425
+</td>
+<td style="text-align:left;">
+(-0.137,0.746)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+twoway,consistency,single
+</td>
+<td style="text-align:left;">
+ICC(C,1)
+</td>
+<td style="text-align:right;">
+0.216
+</td>
+<td style="text-align:left;">
+(-0.046,0.522)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+twoway,consistency,average
+</td>
+<td style="text-align:left;">
+ICC(C,3)
+</td>
+<td style="text-align:right;">
+0.453
+</td>
+<td style="text-align:left;">
+(-0.153,0.766)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="psych-package" class="section level2">
+<h2><code>psych</code> package</h2>
+<p><code>ICC</code> function gives all six forms of ICC using Shrout and Fleiss’s definition.</p>
+<pre class="r"><code>icc_psych = ICC(anxiety)
+
+icc_psych$results %&gt;% 
+  add_column(form = c(&#39;one way, single, agreement&#39;, 
+                      &#39;two way, single, agreement&#39;,
+                      &#39;two way, single, consistency&#39;,
+                      &#39;one way, average, agreement&#39;,
+                      &#39;two way, average, agreement&#39;,
+                      &#39;two way, average, consistency&#39;)) %&gt;% 
+  mutate_if(is.numeric, ~round(.,3)) %&gt;% 
+  mutate(icc_CI = paste0(&#39;(&#39;, `lower bound`,&#39;,&#39; , `upper bound`, &#39;)&#39;)) %&gt;% 
+  select(form, type, ICC, icc_CI ) %&gt;% 
+  kable() %&gt;% 
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+form
+</th>
+<th style="text-align:left;">
+type
+</th>
+<th style="text-align:right;">
+ICC
+</th>
+<th style="text-align:left;">
+icc_CI
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+one way, single, agreement
+</td>
+<td style="text-align:left;">
+ICC1
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:left;">
+(-0.077,0.484)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+two way, single, agreement
+</td>
+<td style="text-align:left;">
+ICC2
+</td>
+<td style="text-align:right;">
+0.198
+</td>
+<td style="text-align:left;">
+(-0.039,0.494)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+two way, single, consistency
+</td>
+<td style="text-align:left;">
+ICC3
+</td>
+<td style="text-align:right;">
+0.216
+</td>
+<td style="text-align:left;">
+(-0.046,0.522)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+one way, average, agreement
+</td>
+<td style="text-align:left;">
+ICC1k
+</td>
+<td style="text-align:right;">
+0.389
+</td>
+<td style="text-align:left;">
+(-0.275,0.738)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+two way, average, agreement
+</td>
+<td style="text-align:left;">
+ICC2k
+</td>
+<td style="text-align:right;">
+0.425
+</td>
+<td style="text-align:left;">
+(-0.127,0.745)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+two way, average, consistency
+</td>
+<td style="text-align:left;">
+ICC3k
+</td>
+<td style="text-align:right;">
+0.453
+</td>
+<td style="text-align:left;">
+(-0.153,0.766)
+</td>
+</tr>
+</tbody>
+</table>
+<p>The two packages give the same results, except for the slight difference in CI for ICC(2,k).</p>
+</div>
+<div id="calculate-from-scratch" class="section level2">
+<h2>Calculate from scratch</h2>
+<p>To get a better understanding of ICC, now we calculate ICC from scratch.</p>
+<p>First we transform the data into a long format and fit a LME model.</p>
+<pre class="r"><code>anxiety_long = anxiety %&gt;% rownames_to_column(&#39;id&#39;) %&gt;% 
+  gather(key = &#39;rater&#39;, value = &#39;score&#39;, -id) %&gt;% mutate(id = as.numeric(id)) %&gt;% 
+  arrange(id, rater)
+
+head(anxiety_long)</code></pre>
+<pre><code>##   id  rater score
+## 1  1 rater1     3
+## 2  1 rater2     3
+## 3  1 rater3     2
+## 4  2 rater1     3
+## 5  2 rater2     6
+## 6  2 rater3     1</code></pre>
+<div id="one-way-model" class="section level3">
+<h3>One way model</h3>
+<p>Fit a LME model with only intercept as a fixed effect and random effect.</p>
+<p><span class="math display">\[Y_{ij} = \beta_0 + r_i + e_{ij},\;\; r_i:\text{each row for each subject}\]</span></p>
+<p><span class="math display">\[r_i \sim N(0, \sigma^2_r) \; \;e_{ij} \sim N(0, \sigma^2) \]</span></p>
+<pre class="r"><code>lme1 = lme (score ~ 1, random = ~ 1 | id,  data = anxiety_long)
+
+summary(lme1)</code></pre>
+<pre><code>## Linear mixed-effects model fit by REML
+##  Data: anxiety_long 
+##        AIC      BIC    logLik
+##   215.2289 221.4615 -104.6145
+## 
+## Random effects:
+##  Formula: ~1 | id
+##         (Intercept) Residual
+## StdDev:   0.5856473 1.271482
+## 
+## Fixed effects: score ~ 1 
+##                Value Std.Error DF  t-value p-value
+## (Intercept) 2.866667 0.2099847 40 13.65179       0
+## 
+## Standardized Within-Group Residuals:
+##        Min         Q1        Med         Q3        Max 
+## -1.6108489 -0.6459328 -0.1398427  0.3881526  2.3215701 
+## 
+## Number of Observations: 60
+## Number of Groups: 20</code></pre>
+<pre class="r"><code>VarCorr(lme1)</code></pre>
+<pre><code>## id = pdLogChol(1) 
+##             Variance  StdDev   
+## (Intercept) 0.3429827 0.5856473
+## Residual    1.6166665 1.2714820</code></pre>
+<pre class="r"><code>between_var = VarCorr(lme1)[1,1] %&gt;% as.numeric()
+within_var = VarCorr(lme1)[2,1] %&gt;% as.numeric()
+
+
+#one way ICC from LME
+between_var/(between_var + within_var)</code></pre>
+<pre><code>## [1] 0.1750225</code></pre>
+<p>Here, <span class="math inline">\(\sigma^2_r\)</span> is 0.3429827, <span class="math inline">\(\sigma^2\)</span> is 1.6166665.</p>
+<p><span class="math display">\[ICC = \frac{\sigma^2_r}{\sigma^2 +\sigma^2_r} = 0.175\]</span></p>
+<p>This is the same as previous result for one way random effect, single measure.</p>
+</div>
+<div id="two-way-model" class="section level3">
+<h3>Two way model</h3>
+<p>Fit a LME model with only intercept as a fixed effect. Its random effects include the subjects and raters. This is a crossed random effect, not a nested random effect.</p>
+<p><span class="math display">\[Y_{ij} = \beta_0 + r_i + c_i + e_{ij}\]</span> <span class="math display">\[r_i:\text{each row for each subject}, c_i:\text{each column for each rater}\]</span></p>
+<p><span class="math display">\[r_i \sim N(0, \sigma^2_r) \; \;c_i \sim N(0, \sigma^2_c), e_{ij} \sim N(0, \sigma^2) \]</span></p>
+<pre class="r"><code>lme2 = lme4::lmer(score ~ 1 + (1 | id) + (1 | rater), data=anxiety_long)
+
+summary(lme2)</code></pre>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: score ~ 1 + (1 | id) + (1 | rater)
+##    Data: anxiety_long
+## 
+## REML criterion at convergence: 207.2
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.5152 -0.5705 -0.2725  0.4860  2.3814 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  id       (Intercept) 0.3991   0.6318  
+##  rater    (Intercept) 0.1684   0.4104  
+##  Residual             1.4482   1.2034  
+## Number of obs: 60, groups:  id, 20; rater, 3
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   2.8667     0.3166   9.055</code></pre>
+<pre class="r"><code>varcomp = VarCorr(lme2) %&gt;% as.data.frame() %&gt;% select(-var1, -var2, -vcov)
+
+
+row_var = varcomp[1,2]^2 
+column_var = varcomp[2,2]^2 
+residual_var = varcomp[3,2]^2 
+# two way ICC, consistency from LME
+row_var/(row_var + residual_var)</code></pre>
+<pre><code>## [1] 0.2160494</code></pre>
+<pre class="r"><code># two way ICC, agreement from LME 
+row_var/(row_var + column_var +residual_var)</code></pre>
+<pre><code>## [1] 0.1979983</code></pre>
+<p>Here, <span class="math inline">\(\sigma^2_r\)</span> is 0.3991228, <span class="math inline">\(\sigma^2_c\)</span> is 0.1684211, <span class="math inline">\(\sigma^2\)</span> is 1.4482456.</p>
+<p>For two way consistency:</p>
+<p><span class="math display">\[ICC = \frac{\sigma^2_r}{\sigma^2 +\sigma^2_r} = 0.216\]</span> For two way agreement:</p>
+<p><span class="math display">\[ICC = \frac{\sigma^2_r}{\sigma^2 +\sigma^2_r + \sigma^2_c} = 0.198\]</span></p>
+<p>This is the same as previous results.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<p>Shrout and Fleiss in 1979 defined 6 forms of ICC:</p>
+<ul>
+<li><p>ICC(1,1): one way, single measure, agreement.</p></li>
+<li><p>ICC(2,1): two way mixed model or two way random model, single measure, agreement.</p></li>
+<li><p>ICC(3,1): two way mixed model or two way random model, single measure, consistency.</p></li>
+<li><p>ICC(1,k): one way, average measure, agreement.</p></li>
+<li><p>ICC(2,k): two way mixed model or two way random model, average measure, agreement.</p></li>
+<li><p>ICC(3,k): two way mixed model or two way random model, average measure, consistency.</p></li>
+</ul>
+<p>The conbination of “Model”(one way or two way random or two way mixed), “Type”(single or average), “Definition”(agreement or consistency) leads to McGraw and Wong’s definition in 1996 of ten forms.</p>
+<p>To assess test-retest reliabity, <strong>two way mixed model, agreement</strong> should be used. This corresponds to ICC(2,1/k). If in actual application, only a single measure will be used, we should use ICC(2,1). If the average of k measures will be used, we should use ICC(2,k). Also, we can simply report both if it’s not clear.</p>
+</div>
+<div id="reference" class="section level1">
+<h1>Reference</h1>
+<ol style="list-style-type: decimal">
+<li><p>Koo TK, Li MY. A Guideline of Selecting and Reporting Intraclass Correlation Coefficients for Reliability Research [published correction appears in J Chiropr Med. 2017 Dec;16(4):346]. J Chiropr Med. 2016;15(2):155-163. <a href="doi:10.1016/j.jcm.2016.02.012" class="uri">doi:10.1016/j.jcm.2016.02.012</a></p></li>
+<li><p>McGraw KO, Wong SP. Forming inferences about some intraclass correlation coefficients. Psychol Methods 1996;1:30–46.</p></li>
+</ol>
+</div>
+
+<br><br><br><br>
+
+<footer class="footer-distributed">
+
+   <img src="images/profile.JPG" alt = "profile" height="38" width="38">  
+   <p>  Jiyue Qin 2019 &copy;</p>
+
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,15 +1,17 @@
 ---
-title: "Resources"
+title: "Blog"
 ---
 
-I will compile anything interesting or useful here.
+A place for lazy me to do something fun.
 
 1. [Useful functions in ggplot](ggplot.html) 
 
 2. [Using dashboard for interactive visualization](dashboard.html)
 
-3. [Compare apply family and map to do iteration](compare_apply_map.html)
+3. [Compare apply family and map to do iteration in R](compare_apply_map.html)
 
 4. [Query question collection, solutions offered in R and SQL](question_collection.html)
 
 5. [Turtorial of R package RTextTools(machine learning for text data label)](RTextTools_turtorial.html)
+
+6. [A complete guide to ICC](ICC_guide.html)

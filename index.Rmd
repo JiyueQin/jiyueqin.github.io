@@ -100,7 +100,7 @@ title: 'Jiyue Qin'
 </div>
 
 
-
+<div>
 <h3> Soon I will be 80 years old </h3>
 <p>I would look back on the journey and feel first time seeing the world just happened yesterday.</p>
 <p>I would be grateful to all the support, joy but also hardship and imperfection.</p>
@@ -152,4 +152,5 @@ title: 'Jiyue Qin'
 </div>
 </div>
 
+</div>
 

@@ -9,7 +9,7 @@ navbar:
   #        href: igem.html
   #      - text: "cancer detection"
   #        href: cancer_detection.html
-    - text: Resources
+    - text: Blog
       href: resource.html
     - text: "Resume"
       href: resume.html
