@@ -14,24 +14,38 @@
 
 <title>RTextTools</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -44,32 +58,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -80,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -100,40 +85,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 41px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h2 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h3 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h4 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h5 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h6 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -161,7 +119,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -173,7 +131,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -184,10 +142,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -199,7 +170,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -278,9 +248,6 @@ $(document).ready(function () {
         <li>
   <a href="resource.html">Blog</a>
 </li>
-<li>
-  <a href="resume.html">Resume</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -297,7 +264,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://www.linkedin.com/in/jiyueqin/">
-    <span class="fa fa fa fa-linkedin"></span>
+    <span class="fa fa-linkedin"></span>
      
   </a>
 </li>
@@ -306,7 +273,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -347,9 +314,12 @@ head(USCongress)</code></pre>
 ## 5                                                                                                                                                     To amend the Immigration and Nationality Act in regard to Caribbean-born immigrants.
 ## 6 To amend title 38, United States Code, to extend the eligibility for housing loans guaranteed by the Secretary of Veterans Affairs under the Native American Housing Loan Pilot Program to veterans who are married to Native Americans.</code></pre>
 <pre class="r"><code>doc_matrix = create_matrix(USCongress$text, language=&quot;english&quot;, removeNumbers=TRUE,
-stemWords=TRUE, removeSparseTerms=0.998)
-
-# removeSparseTerms is set to reduce the size of the matrix</code></pre>
+stemWords=TRUE, removeSparseTerms=0.998)</code></pre>
+<pre><code>## Warning in TermDocumentMatrix.SimpleCorpus(x, control): custom functions are
+## ignored</code></pre>
+<pre><code>## Warning in TermDocumentMatrix.SimpleCorpus(x, control): custom tokenizer is
+## ignored</code></pre>
+<pre class="r"><code># removeSparseTerms is set to reduce the size of the matrix</code></pre>
 <p><code>USCongress</code> data has labeled bills from the United States Congress, with 6 columns and 4449 rows.</p>
 <p><code>major</code> is a manually labeled topic code corresponding to the subject of the bill. <code>text</code> is the content of the bill.</p>
 <p>A document-term matrix is created using <code>create_matrix</code> from <code>tm</code> package.</p>
@@ -387,18 +357,18 @@ RF_CLASSIFY &lt;- classify_model(container, RF)</code></pre>
 svm_ana@label_summary</code></pre>
 <pre><code>##    NUM_MANUALLY_CODED NUM_CONSENSUS_CODED NUM_PROBABILITY_CODED
 ## 1                   9                  18                    18
-## 2                   5                   3                     3
+## 2                   5                   4                     4
 ## 3                  66                  67                    67
 ## 4                  24                  22                    22
 ## 5                  33                  30                    30
 ## 6                  27                  25                    25
 ## 7                  24                  26                    26
-## 8                   4                   5                     5
+## 8                   4                   4                     4
 ## 10                 23                  17                    17
-## 12                 28                  40                    40
+## 12                 28                  41                    41
 ## 13                  5                   6                     6
 ## 14                  8                   8                     8
-## 15                 24                  23                    23
+## 15                 24                  22                    22
 ## 16                 16                  16                    16
 ## 17                 14                  11                    11
 ## 18                 19                  15                    15
@@ -408,18 +378,18 @@ svm_ana@label_summary</code></pre>
 ## 99                  1                   0                     0
 ##    PCT_CONSENSUS_CODED PCT_PROBABILITY_CODED PCT_CORRECTLY_CODED_CONSENSUS
 ## 1            200.00000             200.00000                      77.77778
-## 2             60.00000              60.00000                      20.00000
+## 2             80.00000              80.00000                      20.00000
 ## 3            101.51515             101.51515                      89.39394
 ## 4             91.66667              91.66667                      75.00000
 ## 5             90.90909              90.90909                      69.69697
 ## 6             92.59259              92.59259                      81.48148
 ## 7            108.33333             108.33333                      75.00000
-## 8            125.00000             125.00000                      50.00000
+## 8            100.00000             100.00000                      50.00000
 ## 10            73.91304              73.91304                      60.86957
-## 12           142.85714             142.85714                      71.42857
+## 12           146.42857             146.42857                      67.85714
 ## 13           120.00000             120.00000                      60.00000
 ## 14           100.00000             100.00000                      50.00000
-## 15            95.83333              95.83333                      66.66667
+## 15            91.66667              91.66667                      62.50000
 ## 16           100.00000             100.00000                      56.25000
 ## 17            78.57143              78.57143                      57.14286
 ## 18            78.94737              78.94737                      73.68421
@@ -437,10 +407,10 @@ svm_ana@label_summary</code></pre>
 ## 7                         75.00000
 ## 8                         50.00000
 ## 10                        60.86957
-## 12                        71.42857
+## 12                        67.85714
 ## 13                        60.00000
 ## 14                        50.00000
-## 15                        66.66667
+## 15                        62.50000
 ## 16                        56.25000
 ## 17                        57.14286
 ## 18                        73.68421
@@ -459,32 +429,32 @@ svm_ana@label_summary</code></pre>
 ## [1] 449
 ## 
 ## $PCT_CONSENSUS_CODED
-## [1] 1981.275
+## [1] 1975.679
 ## 
 ## $PCT_PROBABILITY_CODED
-## [1] 1981.275
+## [1] 1975.679
 ## 
 ## $PCT_CORRECTLY_CODED_CONSENSUS
-## [1] 1266.333
+## [1] 1258.595
 ## 
 ## $PCT_CORRECTLY_CODED_PROBABILITY
-## [1] 1266.333</code></pre>
+## [1] 1258.595</code></pre>
 <pre class="r"><code># algorithm summary
 svm_ana@algorithm_summary</code></pre>
 <pre><code>##    SVM_PRECISION SVM_RECALL SVM_FSCORE
 ## 1           0.39       0.78       0.52
-## 2           0.33       0.20       0.25
+## 2           0.25       0.20       0.22
 ## 3           0.88       0.89       0.88
 ## 4           0.82       0.75       0.78
 ## 5           0.77       0.70       0.73
 ## 6           0.88       0.81       0.84
 ## 7           0.69       0.75       0.72
-## 8           0.40       0.50       0.44
+## 8           0.50       0.50       0.50
 ## 10          0.82       0.61       0.70
-## 12          0.50       0.71       0.59
+## 12          0.46       0.68       0.55
 ## 13          0.50       0.60       0.55
 ## 14          0.50       0.50       0.50
-## 15          0.70       0.67       0.68
+## 15          0.68       0.62       0.65
 ## 16          0.56       0.56       0.56
 ## 17          0.73       0.57       0.64
 ## 18          0.93       0.74       0.82
@@ -495,12 +465,12 @@ svm_ana@algorithm_summary</code></pre>
 <pre class="r"><code># document summary
 head(svm_ana@document_summary)</code></pre>
 <pre><code>##   SVM_LABEL  SVM_PROB MANUAL_CODE CONSENSUS_CODE CONSENSUS_AGREE
-## 1        12 0.7501403          12             12               1
-## 2         5 0.8051251           5              5               1
-## 3        15 0.7263768          15             15               1
-## 4        10 0.8752778          10             10               1
-## 5         3 0.9994907           3              3               1
-## 6        14 0.8172150          18             14               1
+## 1        12 0.7497712          12             12               1
+## 2         5 0.7987831           5              5               1
+## 3        15 0.7482303          15             15               1
+## 4        10 0.8715268          10             10               1
+## 5         3 0.9998763           3              3               1
+## 6        14 0.7955166          18             14               1
 ##   CONSENSUS_INCORRECT PROBABILITY_CODE PROBABILITY_INCORRECT
 ## 1                   0               12                     0
 ## 2                   0                5                     0
@@ -519,17 +489,17 @@ summary(analytics)</code></pre>
 ##        n-ENSEMBLE COVERAGE n-ENSEMBLE RECALL
 ## n &gt;= 1                1.00              0.75
 ## n &gt;= 2                0.94              0.77
-## n &gt;= 3                0.67              0.87
+## n &gt;= 3                0.68              0.87
 ## 
 ## 
 ## ALGORITHM PERFORMANCE
 ## 
 ##        SVM_PRECISION           SVM_RECALL           SVM_FSCORE 
-##               0.6315               0.6330               0.6230 
+##               0.6295               0.6290               0.6210 
 ## LOGITBOOST_PRECISION    LOGITBOOST_RECALL    LOGITBOOST_FSCORE 
 ##               0.5855               0.6055               0.5755 
 ##    FORESTS_PRECISION       FORESTS_RECALL       FORESTS_FSCORE 
-##               0.6480               0.5945               0.6045</code></pre>
+##               0.6475               0.5980               0.6035</code></pre>
 <pre class="r"><code># CREATE THE data.frame SUMMARIES
 topic_summary &lt;- analytics@label_summary
 alg_summary &lt;- analytics@algorithm_summary
@@ -574,10 +544,10 @@ doc_summary &lt;- analytics@document_summary</code></pre>
 <p>Above training and testing process is done using the validation set approach, meaning using one part of data to train and the remaining part to test.</p>
 <p>We can also use cross validation based on the full dataset.</p>
 <pre class="r"><code>SVM &lt;- cross_validate(container, 4, &quot;SVM&quot;)</code></pre>
-<pre><code>## Fold 1 Out of Sample Accuracy = 0.6904762
-## Fold 2 Out of Sample Accuracy = 0.7112933
-## Fold 3 Out of Sample Accuracy = 0.7076383
-## Fold 4 Out of Sample Accuracy = 0.7133929</code></pre>
+<pre><code>## Fold 1 Out of Sample Accuracy = 0.7026793
+## Fold 2 Out of Sample Accuracy = 0.7067265
+## Fold 3 Out of Sample Accuracy = 0.7065217
+## Fold 4 Out of Sample Accuracy = 0.7138863</code></pre>
 </div>
 </div>
 
@@ -592,13 +562,14 @@ doc_summary &lt;- analytics@document_summary</code></pre>
 
 
 
+
 </div>
 
 <script>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -616,7 +587,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

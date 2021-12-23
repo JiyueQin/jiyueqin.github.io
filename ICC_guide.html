@@ -13,12 +13,22 @@
 
 <title>A Complete Guide to ICC</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,15 +36,20 @@
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -47,32 +62,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 
@@ -83,10 +73,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -103,40 +89,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 41px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h2 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h3 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h4 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h5 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
-.section h6 {
-  padding-top: 46px;
-  margin-top: -46px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -164,7 +123,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -176,7 +135,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -187,10 +146,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -202,7 +174,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -328,7 +299,7 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
+<div class="row">
 <div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
@@ -354,9 +325,6 @@ div.tocify {
         <li>
   <a href="resource.html">Blog</a>
 </li>
-<li>
-  <a href="resume.html">Resume</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -373,7 +341,7 @@ div.tocify {
 </li>
 <li>
   <a href="https://www.linkedin.com/in/jiyueqin/">
-    <span class="fa fa fa fa-linkedin"></span>
+    <span class="fa fa-linkedin"></span>
      
   </a>
 </li>
@@ -382,7 +350,7 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -509,7 +477,7 @@ head(anxiety, 4)</code></pre>
 <p>we’ll consider the function icc() from <code>irr</code> package and the function ICC() from <code>psych</code> package.</p>
 <div id="irr-package" class="section level2">
 <h2><code>irr</code> package</h2>
-<p>Specify model(oneway or twoway), type(consistency or agreement) and unit(single or average). Based on the document for this function, “If a”oneway" model is used, only “consistency” could be computed". Actually, there is only one ICC for single or average in one-way data.And there is no discrimination in agreement and consistency.To be accurte, it should show how the scores from different raters for a single subject are similar(and thus, absolute agreement)</p>
+<p>Specify model(oneway or twoway), type(consistency or agreement) and unit(single or average). Based on the document for this function, “If a”oneway” model is used, only “consistency” could be computed”. Actually, there is only one ICC for single or average in one-way data.And there is no discrimination in agreement and consistency.To be accurte, it should show how the scores from different raters for a single subject are similar(and thus, absolute agreement)</p>
 <pre class="r"><code>irr1 = icc(
   anxiety, model = &quot;oneway&quot;, 
   unit = &quot;single&quot;
@@ -685,6 +653,8 @@ icc_psych$results %&gt;%
 <thead>
 <tr>
 <th style="text-align:left;">
+</th>
+<th style="text-align:left;">
 form
 </th>
 <th style="text-align:left;">
@@ -701,6 +671,9 @@ icc_CI
 <tbody>
 <tr>
 <td style="text-align:left;">
+Single_raters_absolute
+</td>
+<td style="text-align:left;">
 one way, single, agreement
 </td>
 <td style="text-align:left;">
@@ -710,10 +683,13 @@ ICC1
 0.175
 </td>
 <td style="text-align:left;">
-(-0.077,0.484)
+(-0.041,0.436)
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Single_random_raters
+</td>
 <td style="text-align:left;">
 two way, single, agreement
 </td>
@@ -724,10 +700,13 @@ ICC2
 0.198
 </td>
 <td style="text-align:left;">
-(-0.039,0.494)
+(-0.005,0.447)
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Single_fixed_raters
+</td>
 <td style="text-align:left;">
 two way, single, consistency
 </td>
@@ -738,10 +717,13 @@ ICC3
 0.216
 </td>
 <td style="text-align:left;">
-(-0.046,0.522)
+(-0.007,0.475)
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Average_raters_absolute
+</td>
 <td style="text-align:left;">
 one way, average, agreement
 </td>
@@ -752,10 +734,13 @@ ICC1k
 0.389
 </td>
 <td style="text-align:left;">
-(-0.275,0.738)
+(-0.132,0.698)
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Average_random_raters
+</td>
 <td style="text-align:left;">
 two way, average, agreement
 </td>
@@ -766,10 +751,13 @@ ICC2k
 0.425
 </td>
 <td style="text-align:left;">
-(-0.127,0.745)
+(-0.014,0.708)
 </td>
 </tr>
 <tr>
+<td style="text-align:left;">
+Average_fixed_raters
+</td>
 <td style="text-align:left;">
 two way, average, consistency
 </td>
@@ -780,7 +768,7 @@ ICC3k
 0.453
 </td>
 <td style="text-align:left;">
-(-0.153,0.766)
+(-0.022,0.731)
 </td>
 </tr>
 </tbody>
@@ -812,7 +800,7 @@ head(anxiety_long)</code></pre>
 
 summary(lme1)</code></pre>
 <pre><code>## Linear mixed-effects model fit by REML
-##  Data: anxiety_long 
+##   Data: anxiety_long 
 ##        AIC      BIC    logLik
 ##   215.2289 221.4615 -104.6145
 ## 
@@ -821,7 +809,7 @@ summary(lme1)</code></pre>
 ##         (Intercept) Residual
 ## StdDev:   0.5856473 1.271482
 ## 
-## Fixed effects: score ~ 1 
+## Fixed effects:  score ~ 1 
 ##                Value Std.Error DF  t-value p-value
 ## (Intercept) 2.866667 0.2099847 40 13.65179       0
 ## 
@@ -883,11 +871,11 @@ column_var = varcomp[2,2]^2
 residual_var = varcomp[3,2]^2 
 # two way ICC, consistency from LME
 row_var/(row_var + residual_var)</code></pre>
-<pre><code>## [1] 0.2160494</code></pre>
+<pre><code>## [1] 0.2160493</code></pre>
 <pre class="r"><code># two way ICC, agreement from LME 
 row_var/(row_var + column_var +residual_var)</code></pre>
 <pre><code>## [1] 0.1979983</code></pre>
-<p>Here, <span class="math inline">\(\sigma^2_r\)</span> is 0.3991228, <span class="math inline">\(\sigma^2_c\)</span> is 0.1684211, <span class="math inline">\(\sigma^2\)</span> is 1.4482456.</p>
+<p>Here, <span class="math inline">\(\sigma^2_r\)</span> is 0.3991227, <span class="math inline">\(\sigma^2_c\)</span> is 0.1684204, <span class="math inline">\(\sigma^2\)</span> is 1.4482458.</p>
 <p>For two way consistency:</p>
 <p><span class="math display">\[ICC = \frac{\sigma^2_r}{\sigma^2 +\sigma^2_r} = 0.216\]</span> For two way agreement:</p>
 <p><span class="math display">\[ICC = \frac{\sigma^2_r}{\sigma^2 +\sigma^2_r + \sigma^2_c} = 0.198\]</span></p>
@@ -927,6 +915,7 @@ row_var/(row_var + column_var +residual_var)</code></pre>
 </footer>
 
 
+
 </div>
 </div>
 
@@ -936,7 +925,7 @@ row_var/(row_var + column_var +residual_var)</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -954,7 +943,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -963,6 +952,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
