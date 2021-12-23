@@ -11,8 +11,8 @@ navbar:
   #        href: cancer_detection.html
     - text: Blog
       href: resource.html
-    - text: "Resume"
-      href: resume.html
+    # - text: "Resume"
+    #   href: resume.html
   right:
     - icon: fa-envelope fa-lg
       href: mailto:<jq2293@cumc.columbia.edu>
