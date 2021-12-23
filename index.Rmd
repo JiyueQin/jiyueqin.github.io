@@ -95,7 +95,7 @@ title: 'Jiyue Qin'
    <p class="project_title"> Hadza Hunter-gathers' Gut Metagenome Analysis</p>
    <br>
    <p>Through variant calling analysis, we found eight prevalent species have significant SNP enrichments in wet season. 83 genes were identified with the most characteristic SNP distributions between wet season and dry season. Many of these genes are from metabolic pathways like carbon metabolism and glycolysis. This implies the impact of seasonal chnages on mutational patterns and functions for gut microbiome of an unindustrialized population.</p>
-   <p>[Preprint of this paper](https://www.biorxiv.org/content/early/2018/09/16/418889){target="_blank"}</p>
+   <p>[Publication](https://pubmed.ncbi.nlm.nih.gov/33509082/){target="_blank"}</p>
    </div>
 </div>
 
