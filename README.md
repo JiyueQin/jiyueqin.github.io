@@ -1,2 +1,2 @@
 # jiyueqin.github.io
-This is for homework 4 in data science.
+THis builds my personal website.
